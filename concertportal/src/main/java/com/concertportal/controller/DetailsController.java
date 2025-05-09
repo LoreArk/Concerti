@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import jakarta.servlet.http.HttpSession;
+ /* import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/details")
@@ -33,3 +33,4 @@ public class DetailsController {
     
 
 }
+*/
