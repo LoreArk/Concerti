@@ -2,3 +2,28 @@ body {
     background-color: #a50000;
     font-family: Arial, sans-serif;
 }
+
+#footer {
+    background-color: #333;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+    height: 50px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+
+}
+
+
+.navbarNav {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+    height: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
