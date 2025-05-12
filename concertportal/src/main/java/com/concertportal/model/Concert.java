@@ -26,6 +26,7 @@ public class Concert {
     // join column private Integer idLocation;
     private String genre;
     private String description;
+    private String foto;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_location", referencedColumnName = "id")
