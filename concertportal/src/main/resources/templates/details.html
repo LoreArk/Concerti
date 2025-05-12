@@ -10,7 +10,7 @@
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
     <title>details</title>
-    <link rel="stylesheet" href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
 <body>
@@ -48,12 +48,19 @@
     </div>
     <div class="main-content">
         <h2>Concerto dettaglio</h2>
-        <div>
-            Immagine
-            Descrizione
-            Cantante
-            Data
-            Indirizzo
+        <div class="col-lg-6">
+            <div class="col-lg-4">
+                <!--Come dare il percorso dell'immagine?-->
+                <img th:src="@{images/}" alt="Foto concerto">
+            </div>
+            <ul class="list-group mt-4">
+                <li class="list-group-item" th:text="|Descrizione: ${concert.description}|"></li>
+                <li class="list-group-item" th:text="|Artista: ${concert.artist}|"></li>
+                <li class="list-group-item" th:text="|Data e ora: ${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}|"></li>
+                <li class="list-group-item" th:text="|Indirizzo: ${concert.location.address}|"></li>
+                <!-- Campo PREZZO momentaneamente assente 
+                <li class="list-group-item" th:text="|Prezzo: ${}|"></li> -->
+            </ul>
         </div>
     </div>
     <div class="footer">
