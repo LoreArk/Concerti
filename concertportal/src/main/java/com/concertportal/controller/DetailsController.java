@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/details")
-
 public class DetailsController {
 
     @Autowired
@@ -26,11 +25,20 @@ public class DetailsController {
         if(concert == null) {
             return "redirect:/";
         }
+
+        System.out.println("Artista: " + concert.getArtist());
+        System.out.println("Data: " + concert.getDate());
+        System.out.println("Venue: " + concert.getLocation().getName());
+        System.out.println("Region: " + 
+            (concert.getLocation().getRegion() != null ? concert.getLocation().getRegion().getName() : "null"));
+        System.out.println("Città: " + 
+            (concert.getLocation().getCity() != null ? concert.getLocation().getCity().getName() : "null"));
         
+        System.out.println("Address: " + concert.getLocation().getAddress());
+        System.out.println("---");
+
         model.addAttribute("concert", concert);
         model.addAttribute("result", result);
         return "details";
     }
-    
-
 }
