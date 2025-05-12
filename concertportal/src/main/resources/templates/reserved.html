@@ -226,29 +226,29 @@
             <!--aggiungo campi dell'imput | collego le altre pagine | visualizzatore lista con tasto modifica o nascondi  |  -->
             <form id="concertForm" class="row g-3">
                 <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Artista" id="artist" required>
+                    <input type="text" class="form-control" th:value="${concertForm.artist}" placeholder="Artista" id="artist" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Titolo del concerto" id="concert_name"
+                    <input type="text" class="form-control" th:value="${concertForm.concertName}" placeholder="Titolo del concerto" id="concert_name"
                         required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Genere musicale" id="genre" required>
+                    <input type="text" class="form-control" th:value="${concertForm.genre}" placeholder="Genere musicale" id="genre" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Città" id="city" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.city.name}" placeholder="Città" id="city" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Regione" id="region" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.region.name}" placeholder="Regione" id="region" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Venue" id="venue" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.name}" placeholder="Venue" id="venue" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="indirizzo" id="address" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.address}" placeholder="indirizzo" id="address" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" id="date" required>
+                    <input type="date" class="form-control" th:value="${concertForm.date}" id="date" required>
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupFile01">Locandina</label>
@@ -289,13 +289,17 @@
                         <td th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}"></td>
                         <td th:text="|${concert.location.city.name},  ${concert.location.name}|"></td>
                         <td th:text="${concert.genre}"></td>
-                        <td><button type="button" class="btn btn-light">Modifica</button></td>
-                        <td><button type="button" class="btn btn-light">Elimina</button></td>
+                        <td><a th:href="@{/reserved(id=${concert.id})}" class="btn btn-light">Modifica</a></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-danger delete" th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
+                                Elimina
+                            </button></td>
                     </tr>
 
                 </table>
 
             </div>
+            
         </div>
 
         <!-- <div class="footer">
@@ -326,9 +330,19 @@
     </div>
 
 
-
-
 </body>
+
+    <script>
+            document.querySelectorAll(".delete").forEach(function(button) {
+                button.addEventListener("click", function() {
+                const receivedValues = this.getAttribute("value");
+                const receivedDatas = receivedValues.split("@");
+                const confirmDelete = confirm("Sei sicuro di voler cancellare " + receivedDatas[0]);
+                if(confirmDelete)
+                    window.location.href = "/reserved/delete?id=" + receivedDatas[1];
+                });
+            });
+    </script>
 
 <!--Script form-->
 <script>
