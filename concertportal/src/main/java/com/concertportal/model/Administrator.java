@@ -1,5 +1,6 @@
 package com.concertportal.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,5 +24,6 @@ public class Administrator {
     private String email;
     
    // @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,50}", message = "Password Troppo Debole")
-    private String password;
+   @Column(name = "pass_word") 
+   private String password;
 }

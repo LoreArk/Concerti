@@ -39,12 +39,10 @@ public class LoginController {
         System.out.println("EMAIL: " + email);
         System.out.println("PASSWORD: " + password);
         
-        String checkResult = adminService.loginCheck(email, password, session);
+       String checkResult = adminService.loginCheck(email, password, session);
         if(checkResult.equals("Credenziali Errate")) {
-            return "redirect:/login?errore=" + checkResult;
+            return "redirect:/login?error=" + checkResult;
         }
         return "redirect:/reserved";
     }
-    
-
 }

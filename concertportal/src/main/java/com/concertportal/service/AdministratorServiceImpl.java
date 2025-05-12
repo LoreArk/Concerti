@@ -17,10 +17,16 @@ public class AdministratorServiceImpl implements AdministratorService{
 
     @Override
     public String loginCheck(String email, String password, HttpSession session) {
-        Administrator admin = adminRepository.findAdminByEmail(email);
-        if(admin == null || !admin.getPassword().equals(password)) {
+        Administrator admin = adminRepository.findByEmail(email);
+        
+        if (admin == null) {
             return "Credenziali Errate";
         }
+    
+        if (!admin.getPassword().equals(password)) {
+            return "Credenziali Errate";
+        }
+
         session.setAttribute("admin", admin);
         return "Login Autorizzato";
     }
@@ -32,7 +38,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 
     @Override
     public String emailCheck(String email) {
-        if(adminRepository.findAdminByEmail(email) != null)
+        if(adminRepository.findByEmail(email) != null)
         {
             return "Email già registrata";
         }

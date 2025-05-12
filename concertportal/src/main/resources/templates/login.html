@@ -47,10 +47,11 @@
         </nav>
     </div>
     <div class="main-content">
-        <form action="" method="post" enctype="multipart/form-data">
+        <h5 th:if="${error != null}" th:text="${error}" class="text-center text-danger"></h5>
+        <form action="/login" method="post">
             <table>
                 <tr>
-                    <td>Nome Utente<input type="text" name="email" id="username" required></td>
+                    <td>Email<input type="text" name="email" id="email" required></td>
                 </tr>
                 <tr>
                     <td>Password<input type="password" name="password" id="password" required></td>

@@ -42,7 +42,6 @@ public class ReservedController {
     public String formHandler(@RequestBody String entity) {
         
         
-
         return entity;
     }
     
