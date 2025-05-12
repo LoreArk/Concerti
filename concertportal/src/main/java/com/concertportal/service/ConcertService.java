@@ -1,5 +1,6 @@
 package com.concertportal.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -11,4 +12,5 @@ public interface ConcertService {
     Concert getConcertById(Integer id);
     ResponseEntity<String> registerConcert(Concert concert);
     String deleteConcert(Integer id);
+    Object[] concertValidation(Concert concert, String concertName, String artist, LocalDateTime date, String genre, String description, Integer locationID);
 }

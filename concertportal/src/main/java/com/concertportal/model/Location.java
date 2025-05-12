@@ -1,5 +1,6 @@
 package com.concertportal.model;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,15 +21,15 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_id_region", referencedColumnName = "id")
     private Region region;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_id_city", referencedColumnName = "id")
     private City city;
 
-    private String name;
-    private String address;
+    private String name; //venue name
+    private String address; 
     private String photo;
 }
