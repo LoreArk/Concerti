@@ -287,10 +287,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a th:href="@{/}" class="nav-link active" aria-current="page">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a th:href="@{/login}" class="nav-link">Area Amministratore</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
@@ -363,108 +363,38 @@
   </div>
 
 
+  <!--th:each="concert : ${concerti}"-->
+
   <div class="row justify-content-center">
 
-    <div class="col-md-4 card p-4 m-5" id="box">
+    <div th:each="concert : ${concerti}" class="col-md-4 card p-4 m-5" id="box">
 
       <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 1</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
+      <div  class="card-body">
+        <h2 th:text="${concert.concertName}"></h2>
+        <h4 th:text="${concert.artist}" class="card-title">Artista 1</h4> <!--artist qui e' una variabile di concert model-->
+        <p th:text="${concert.location.city.name}" class="card-text">Città: </p>
+        <p class="card-text" th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}"></p>
+
+        <p class="card-text" th:text="|Location: ${concert.location.name}|"></p> 
         <div class="card-footer">
           <a href="#" class="btn btn-secondary">Scopri di più</a>
         </div>
       </div>
     </div>
-    <div class="col-md-4 card p-4 m-5" id="box">
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 2</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
-        <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 card p-4 m-5" id="box">
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 2</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
-        <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 card p-4 m-5" id="box">
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 2</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
-        <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 card p-4 m-5" id="box">
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 2</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
-        <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 card p-4 m-5" id="box">
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 2</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
-        <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 card p-4 m-5" id="box">
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 2</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
-        <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 card p-4 m-5" id="box">
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-      <div class="card-body">
-        <h4 class="card-title">Artista 2</h4>
-        <p class="card-text">Città: </p>
-        <p class="card-text">Data: </p>
-        <p class="card-text">Location: </p>
-        <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
-        </div>
-      </div>
-    </div>
+
+   
+
+
+
+
+
+
+
+
     <div class="main-content container mt-5 mb-5 p-5 bg-light shadow">
       <div class="row justify-content-center">
-        <!-- Concerto 1 -->
+       <!--Concerto 1-->   
         <div class="col-md-4 card p-4 m-5" id="carta">
 
           <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
