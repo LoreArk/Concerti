@@ -215,7 +215,7 @@
                                 <li class="nav-item">
                                    <!-- <a class="nav-link disabled" href="#" tabindex="-1"
                                         aria-disabled="true">Disabled</a>-->
-                                        <button type="button" th:href="@{/reserved/logout}" class="btn btn-light">Logout</button>
+                                        <a class="btn btn-light" th:href="@{/reserved/logout}" > Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -235,6 +235,12 @@
                 </div>
                 <div class="col-md-3">
                     <input type="text" class="form-control" placeholder="Città" id="city" required>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Regione" id="region" required>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Titolo del concerto" id="concert_name" required>
                 </div>
                 <div class="col-md-3">
                     <input type="date" class="form-control" id="date" required>
