@@ -204,7 +204,7 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                    <a class="nav-link active" aria-current="page" th:href="@{/}" >Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Features</a>
@@ -227,7 +227,7 @@
         style="min-height: 100vh; padding-top: 60px; padding-bottom: 60px;">
         <div class="form p-4 shadow rounded w-75">
 
-            <h2 class="text-center mb-4">Gestione Concerti</h2>
+            <h2 class="text-center mb-4">Gestione Concerti</h2>  <!--aggiungo campi dell'imput | collego le altre pagine | visualizzatore lista con tasto modifica o nascondi  |  -->
             <form id="concertForm" class="row g-3">
                 <div class="col-md-4">
                     <input type="text" class="form-control" placeholder="Artista" id="artist" required>
