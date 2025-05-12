@@ -22,7 +22,7 @@ public class Concert {
 
     private String concertName;
     private String artist;
-    private LocalDateTime localDateTime;
+    private LocalDateTime date;
     // join column private Integer idLocation;
     private String genre;
     private String description;
