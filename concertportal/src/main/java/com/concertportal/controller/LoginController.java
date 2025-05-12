@@ -33,7 +33,12 @@ public class LoginController {
     }
     
     @PostMapping()
-    public String formHandler(@RequestBody String email, @RequestParam String password, HttpSession session) {
+    public String formHandler(@RequestParam String email, @RequestParam String password, HttpSession session) {
+        
+        System.out.println("Form handler");
+        System.out.println("EMAIL: " + email);
+        System.out.println("PASSWORD: " + password);
+        
         String checkResult = adminService.loginCheck(email, password, session);
         if(checkResult.equals("Credenziali Errate")) {
             return "redirect:/login?errore=" + checkResult;

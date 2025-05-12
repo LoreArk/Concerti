@@ -26,8 +26,13 @@ public class IndexController {
         concerti.forEach(concerto -> {
             System.out.println("Artista: " + concerto.getArtist());
             System.out.println("Data: " + concerto.getDate());
-            System.out.println("Città: " + concerto.getLocation().getCity());
             System.out.println("Venue: " + concerto.getLocation().getName());
+            System.out.println("Region: " + 
+                (concerto.getLocation().getRegion() != null ? concerto.getLocation().getRegion().getName() : "null"));
+            System.out.println("Città: " + 
+                (concerto.getLocation().getCity() != null ? concerto.getLocation().getCity().getName() : "null"));
+            
+            System.out.println("Address: " + concerto.getLocation().getAddress());
             System.out.println("---");
         });
 

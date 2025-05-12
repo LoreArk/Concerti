@@ -1,5 +1,6 @@
 package com.concertportal.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class ConcertServiceImpl implements ConcertService {
     @Autowired
     private ConcertRepository concertRepository;
     
+
     @Override
     public List<Concert> getAllConcerts() {
         return (List<Concert>) concertRepository.findAllByOrderByDateAsc();
@@ -33,6 +35,15 @@ public class ConcertServiceImpl implements ConcertService {
     @Override
     public String deleteConcert(Integer id) {
         throw new UnsupportedOperationException("Unimplemented method 'deleteConcert'");
+    }
+
+    @Override
+    public Object[] concertValidation(Concert concert, String concertName, String artist, LocalDateTime date,
+            String genre, String description, Integer locationID) {
+        
+        
+
+        throw new UnsupportedOperationException("Unimplemented method 'concertValidation'");
     }
 
 }

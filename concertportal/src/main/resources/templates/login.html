@@ -50,13 +50,15 @@
         <form action="" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
-                    <td>Nome Utente<input type="text" name="username" id="username"></td>
+                    <td>Nome Utente<input type="text" name="email" id="username" required></td>
                 </tr>
                 <tr>
-                    <td>Password<input type="password" name="password" id="password"></td>
+                    <td>Password<input type="password" name="password" id="password" required></td>
                 </tr>
                 <tr>
-                    <td><button>Invia</button></td>
+                    <td>
+                        <input type="submit" value="Accesso Area Riservata" class="btn btn-success">
+                    </td>
                 </tr>
             </table>
         </form>
