@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.concertportal.model.Concert;
 import com.concertportal.service.ConcertService;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -41,9 +44,13 @@ public class ReservedController {
     @PostMapping
     public String formHandler(@RequestBody String entity) {
         
-        
         return entity;
     }
     
-
+    
+    @GetMapping("/logout")
+    public String logoutAdmin(HttpSession session) {
+        session.removeAttribute("admin");
+        return "redirect:/login";
+    }
 }
