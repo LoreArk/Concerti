@@ -55,6 +55,8 @@
             </div>
             -->
             <ul class="list-group mt-4">
+
+
                 <li class="list-group-item" th:text="|Descrizione: ${concert.description}|"></li>
                 <li class="list-group-item" th:text="|Artista: ${concert.artist}|"></li>
                 <li class="list-group-item" th:text="|Data e ora: ${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}|"></li>
