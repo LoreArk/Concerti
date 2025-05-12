@@ -34,7 +34,7 @@
         width: 100%;
     }
 
-    
+
     .btn-primary {
         background-color: #a50000;
         border-color: #820000;
@@ -102,7 +102,7 @@
         stroke-width: 1px;
     }
 
-    
+
 
     @keyframes fadeIn {
         from {
@@ -175,9 +175,6 @@
         margin-bottom: 20px;
         color: #a50000;
     }
-
-    
-
 </style>
 
 <body>
@@ -203,7 +200,7 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/}" >Home</a>
+                                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a th:href="@{/login}" class="nav-link">Area Amministratore</a>
@@ -212,9 +209,9 @@
                                     <a class="nav-link" href="#">Pricing</a>
                                 </li>
                                 <li class="nav-item">
-                                   <!-- <a class="nav-link disabled" href="#" tabindex="-1"
+                                    <!-- <a class="nav-link disabled" href="#" tabindex="-1"
                                         aria-disabled="true">Disabled</a>-->
-                                        <a class="btn btn-light" th:href="@{/reserved/logout}" > Logout</a>
+                                    <a class="btn btn-light" th:href="@{/reserved/logout}"> Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -227,13 +224,15 @@
         style="min-height: 100vh; padding-top: 60px; padding-bottom: 60px;">
         <div class="form p-4 shadow rounded w-75">
 
-            <h2 class="text-center mb-4">Gestione Concerti</h2>  <!--aggiungo campi dell'imput | collego le altre pagine | visualizzatore lista con tasto modifica o nascondi  |  -->
+            <h2 class="text-center mb-4">Gestione Concerti</h2>
+            <!--aggiungo campi dell'imput | collego le altre pagine | visualizzatore lista con tasto modifica o nascondi  |  -->
             <form id="concertForm" class="row g-3">
                 <div class="col-md-4">
                     <input type="text" class="form-control" placeholder="Artista" id="artist" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Titolo del concerto" id="concert_name" required>
+                    <input type="text" class="form-control" placeholder="Titolo del concerto" id="concert_name"
+                        required>
                 </div>
                 <div class="col-md-3">
                     <input type="text" class="form-control" placeholder="Genere musicale" id="genre" required>
@@ -249,10 +248,18 @@
                 </div>
                 <div class="col-md-3">
                     <input type="text" class="form-control" placeholder="indirizzo" id="address" required>
-                </div>              
+                </div>
                 <div class="col-md-3">
                     <input type="date" class="form-control" id="date" required>
                 </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Locandina</label>
+                    <input type="file" class="form-control" id="inputGroupFile01">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Artista</label>
+                    <input type="file" class="form-control" id="inputGroupFile01">
+                  </div>
                 <div class="col-md-2 d-grid">
                     <button type="submit" class="btn btn-primary">Aggiungi</button>
                 </div>
@@ -265,35 +272,35 @@
     <div class="row">
 
         <div class="d-flex justify-content-center align-items-center">
-        <div class="form p-4 shadow rounded w-75">
-            <table class="table table-striped">
-                <tr>
-                    <td>#</td>
-                    <td>Concerto</td>
-                    <td>Artista</td>
-                    <td>Data</td>
-                    <td>Location</td>
-                    <td>Genere</td>
-                   
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>xxx</td>
-                    <td>xxxx</td>
-                    <td>xxxx</td>
-                    <td>xxxx</td>
-                    <td>xxxx</td>
-                    <td><button type="button" class="btn btn-light">Modifica</button></td>
-                    <td><button type="button" class="btn btn-light">Elimina</button></td>
-                </tr>
-                
-              </table>
-              
-        </div>
-    </div>
+            <div class="form p-4 shadow rounded w-75">
+                <table class="table table-striped">
+                    <tr>
+                        <td>#</td>
+                        <td>Concerto</td>
+                        <td>Artista</td>
+                        <td>Data</td>
+                        <td>Location</td>
+                        <td>Genere</td>
 
-       <!-- <div class="footer">
+
+                    </tr>
+                    <tr th:each="concert, iterStat : ${concerts}">
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${concert.concertName}"></td>
+                        <td th:text="${concert.artist}"> </td>
+                        <td th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}"></td>
+                        <td th:text="|${concert.location.city.name},  ${concert.location.name}|"></td>
+                        <td th:text="${concert.genre}"></td>
+                        <td><button type="button" class="btn btn-light">Modifica</button></td>
+                        <td><button type="button" class="btn btn-light">Elimina</button></td>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+
+        <!-- <div class="footer">
             <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
                 <div class="container-fluid">
                     <div class="row justify-content-center padding: 3%">
