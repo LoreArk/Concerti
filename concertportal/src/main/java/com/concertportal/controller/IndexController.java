@@ -18,7 +18,7 @@ public class IndexController {
     private ConcertService concertService;
 
     @GetMapping
-    public String renderPagina(Model model) {
+    public String renderPage(Model model) {
 
         List<Concert> concerti = concertService.getAllConcerts();
 
