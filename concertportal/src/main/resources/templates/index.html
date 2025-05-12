@@ -378,7 +378,7 @@
 
         <p class="card-text" th:text="|Location: ${concert.location.name}|"></p> 
         <div class="card-footer">
-          <a href="#" class="btn btn-secondary">Scopri di più</a>
+          <a th:href="@{/details(id=${concert.id})}" class="btn btn-secondary">Scopri di più</a>
         </div>
       </div>
     </div>
