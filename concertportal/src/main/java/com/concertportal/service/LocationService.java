@@ -4,9 +4,10 @@ import org.springframework.http.ResponseEntity;
 import com.concertportal.model.Location;
 
 public interface LocationService {
-    List<Location> getAllLocations();
+    List<Location> getAllLocationsById(Integer id);
     Location getLocationById(Integer id);
     ResponseEntity<String> registerLocation(Location concert);
    // ResponseEntity<String> registerConcert(Concert concert, MultipartFile poster, MultipartFile artistPhoto);
     //Object[] concertValidation(Concert concert, String concertName, String artist, LocalDateTime date, String genre, String description, Integer locationID);
+    
 }

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.concertportal.model.Location;
 import com.concertportal.repository.LocationRepository;
 
-import jakarta.servlet.http.HttpSession;
-
 @Service
 public class LocationServiceImpl implements LocationService{
 
@@ -18,8 +16,8 @@ public class LocationServiceImpl implements LocationService{
     private LocationRepository locationRepository;
 
     @Override
-    public List<Location> getAllLocations() {
-        return (List<Location>) locationRepository.findAll();
+    public List<Location> getAllLocationsById(Integer id) {
+        return (List<Location>) locationRepository.findByCityId(id);
     }
 
     @Override

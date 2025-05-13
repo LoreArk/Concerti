@@ -297,7 +297,7 @@
                         <td th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}"></td>
                         <td th:text="|${concert.location.city.name},  ${concert.location.name}|"></td>
                         <td th:text="${concert.genre}"></td>
-                        <td><a th:href="@{/reserved(id=${concert.id})}" class="btn btn-light">Modifica</a></td>
+                        <td><a th:href="@{/reserved(id=${concert.id}, cityId=${concert.location.city.id})}" class="btn btn-light">Modifica</a></td>
                         <td>
                             <button class="btn btn-sm btn-outline-danger delete"
                                 th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">

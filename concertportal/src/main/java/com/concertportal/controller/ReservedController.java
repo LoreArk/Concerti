@@ -1,5 +1,6 @@
 package com.concertportal.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import com.concertportal.model.Concert;
 import com.concertportal.model.Location;
 import com.concertportal.model.Region;
 import com.concertportal.service.ConcertService;
+import com.concertportal.service.LocationService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -32,11 +34,18 @@ public class ReservedController {
     @Autowired
     private ConcertService concertService;
 
+    @Autowired
+    private LocationService locationService;
+
     private Map<String, String> errors;
 
 
     @GetMapping
-    public String renderPage(HttpSession session, Model model, @RequestParam(required = false) Integer id, @RequestParam(required = false) String result) {
+    public String renderPage(HttpSession session, Model model, 
+            @RequestParam(required = false) Integer id, 
+                @RequestParam(required = false) String result,
+                    @RequestParam(required = false) Integer cityId) {
+        
         //impedisco accesso se la sessione non ha credenziali
         if(session.getAttribute("admin") == null) {
             return "redirect:/login";
@@ -52,10 +61,23 @@ public class ReservedController {
         } else {
             concertForm = concertService.getConcertById(id);
         }
+
+        List<Location> locations = new ArrayList<>();
+        if(cityId != null) {
+            locations = locationService.getAllLocationsById(cityId);
+        }
+
         System.out.println("CONCERT LOCATION ID:" + concertForm.getLocation().getId());
+        
+        for (Location location : locations) {
+            System.out.println("LOCATION BY CITY: " + location.getName() + ", " + location.getId());
+        }
+
         model.addAttribute("concertForm", concertForm);
         model.addAttribute("concerts", concerts);
         model.addAttribute("result", result);
+
+        model.addAttribute("locations", locations);
 
         return "reserved";
     }
