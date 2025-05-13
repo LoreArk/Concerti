@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpSession;
 public interface ConcertService {
     List<Concert> getAllConcerts();
     Concert getConcertById(Integer id);
-   // ResponseEntity<String> registerConcert(Concert concert);
-    ResponseEntity<String> registerConcert(Concert concert, MultipartFile poster, MultipartFile artistPhoto);
+    ResponseEntity<String> registerConcert(Concert concert);
+   // ResponseEntity<String> registerConcert(Concert concert, MultipartFile poster, MultipartFile artistPhoto);
     String deleteConcert(Integer id, HttpSession session);
     Object[] concertValidation(Concert concert, String concertName, String artist, LocalDateTime date, String genre, String description, Integer locationID);
 }
