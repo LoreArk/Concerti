@@ -40,6 +40,14 @@ public class ConcertServiceImpl implements ConcertService {
     @Override
     public ResponseEntity<String> registerConcert(Concert concert) {
 
+        System.out.println("REGISTER CONCERT");
+        System.out.println(concert.getId());
+        System.out.println(concert.getConcertName());
+        System.out.println(concert.getLocation().getId());
+        System.out.println(concert.getLocation().getCity().getId());
+
+        
+
         //modify
         if(concert.getId() != null) {
             System.out.println("MODIFY, ID: " + concert.getId());

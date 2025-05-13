@@ -225,6 +225,10 @@
             <h2 class="text-center mb-4">Gestione Concerti</h2>
             <!--aggiungo campi dell'imput | collego le altre pagine | visualizzatore lista con tasto modifica o nascondi  |  -->
                 <form   id="concertForm" class="row g-3" >
+                    <input type="hidden" name="id" th:value="${concertForm.id}">
+                    <input type="hidden" name="location.id" th:value="${concertForm.location.id}">
+                    <input type="hidden" name="location.city.id" th:value="${concertForm.location.city.id}">
+                    <input type="hidden" name="location.region.id" th:value="${concertForm.location.region.id}">
                     <div class="col-md-4">
                         <input name="artist" type="text" class="form-control" th:value="${concertForm.artist}" placeholder="Artista" id="artist" required>
                     </div>
@@ -253,14 +257,14 @@
                         <label for="orario">Scegli l'orario:</label>
                         <input name="time" type="time" class="form-control" id="orario" th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
                     </div>
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <label class="input-group-text" for="poster">Locandina</label>
                         <input name="poster" type="file" class="form-control" id="poster">
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="artistPhoto">Foto Artista</label>
                         <input name="artistPhoto" type="file" class="form-control" id="artistPhoto">
-                    </div>
+                    </div> -->
                     <div class="col-md-2 d-grid">
                         <button type="submit" id="concertSubmit" class="btn btn-primary">Aggiungi</button>
                     </div>
