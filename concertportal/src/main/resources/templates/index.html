@@ -10,15 +10,19 @@
   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 <title>Index</title>
 <link rel="stylesheet" th:href="@{/style.css}">
-<link rel="script" th:src="@{/script.js}"></link>
+<link rel="script" th:src="@{/script.js}">
+</link>
 </link>
 <style>
+  .card {
+    max-width: 245px;
+  }
   .card-body {
     padding: 2%;
   }
 
   .card-title {
-    font-size: 1.5rem;
+    font-size: 12px;
     margin-bottom: 1rem;
   }
 
@@ -26,20 +30,6 @@
     text-align: center;
     padding: 1rem;
 
-  }
-
-  #carta {
-    margin: 5%;
-    padding: 4%;
-    box-shadow: 10px 10px;
-    animation: appear linear;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;
-  }
-
-  #carta img {
-    width: 100%;
-    height: auto;
   }
 
   .card:nth-child(even) {
@@ -58,157 +48,50 @@
     animation-range: entry 0 cover 40%;
   }
 
-    .card-footer {
-      text-align: center;
-      padding: 1rem;
+  #carta {
+    margin: 5%;
+    padding: 4%;
+    box-shadow: 10px 10px;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+  }
 
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 5%;
+  }
+
+  .card:nth-child(even) {
+    background-color: #ffeeee;
+    box-shadow: 10px 10px;
+    animation: slidedx linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+  }
+
+  .card:nth-child(odd) {
+    background-color: #ffffff73;
+    box-shadow: 10px 10px;
+    animation: slidesx linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      scale: 0.5;
     }
 
-
-    #carta {
-      margin: 5%;
-      padding: 4%;
-      box-shadow: 10px 10px;
-      animation: appear linear;
-      animation-timeline: view();
-      animation-range: entry 0 cover 40%;
+    to {
+      opacity: 1;
+      scale: 1;
     }
+  }
 
-    #carta img {
-      width: 100%;
-      height: auto;
-    }
-
-    .card:nth-child(even) {
-      background-color: #ffeeee;
-      box-shadow: 10px 10px;
-      animation: slidedx linear;
-      animation-timeline: view();
-      animation-range: entry 0 cover 40%;
-    }
-
-    .card:nth-child(odd) {
-      background-color: #ffffff73;
-      box-shadow: 10px 10px;
-      animation: slidesx linear;
-      animation-timeline: view();
-      animation-range: entry 0 cover 40%;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        scale: 0.5;
-      }
-
-      to {
-        opacity: 1;
-        scale: 1;
-      }
-    }
-
-    @keyframes slidesx {
-      from {
-        transform: translateX(-100%);
-      }
-
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slidedx {
-      from {
-        transform: translateX(100%);
-      }
-
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    #box {
-      background-color: #30000073;
-      box-shadow: 10px 10px;
-      margin-bottom: 20px;
-      animation: appear linear;
-      animation-timeline: view();
-      animation-range: entry 0 cover 40%;
-      color: #ffeeee;
-
-    }
-
-    .carousel-container {
-      width: 85%;
-      height: 80vh;
-      overflow: hidden;
-      position: relative;
-      border-radius: 15px;
-      margin: 0 auto;
-      margin-top: 5%;
-
-
-    }
-
-    .carousel-track {
-      display: flex;
-      animation: scroll-left 10s linear infinite;
-    }
-
-    .carousel-slide {
-      position: relative;
-      flex-shrink: 0;
-      width: 60%;
-      margin-right: 10px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      transition: transform 20s ease;
-    }
-
-    .carousel-slide img {
-      width: 100%;
-      height: 80vh;
-      object-fit: cover;
-      transition: transform 30s linear;
-      filter: sepia(100%);
-      -webkit-filter: sepia(100%);
-    }
-
-    .carousel-slide:hover img {
-      transform: scale(1.5);
-    }
-
-    .carousel-text {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 2rem;
-      color: #ffeeee96;
-      width: 100%;
-      justify-content: left;
-      display: flex;
-      flex-direction: column;
-      font-family: fantasy;
-    }
-
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(-273%);
-      }
-    }
-
-    .carousel-text h3 {
-      font-size: 1.5rem;
-      margin-left: 1rem;
-      margin-top: 1rem;
-    }
-
-    
   @keyframes slidesx {
     from {
       transform: translateX(-100%);
@@ -230,7 +113,7 @@
   }
 
   #box {
-    background-color: #30000073;
+    background-color: #300000c6;
     box-shadow: 10px 10px;
     margin-bottom: 20px;
     animation: appear linear;
@@ -244,13 +127,33 @@
     width: 85%;
     max-width: 1000px;
     height: 80vh;
-    overflow: hidden;
     position: relative;
-    border-radius: 15px;
     margin: 0 auto;
     margin-top: 5%;
+  }
 
+  /* Maschera con gradiente di opacità */
+  .carousel-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
 
+  .carousel-viewport {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    mask-image: linear-gradient(to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 90%,
+        rgba(0, 0, 0, 0) 100%);
   }
 
   .carousel-track {
@@ -278,23 +181,6 @@
     -webkit-filter: sepia(100%);
   }
 
-  .carousel-slide:hover img {
-    transform: scale(1.5);
-  }
-
-  .carousel-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 2rem;
-    color: #ffeeee96;
-    width: 100%;
-    justify-content: left;
-    display: flex;
-    flex-direction: column;
-    font-family: fantasy;
-  }
-
   @keyframes scroll-left {
     0% {
       transform: translateX(0);
@@ -305,11 +191,103 @@
     }
   }
 
-  .carousel-text h3 {
-    font-size: 1.5rem;
-    margin-left: 1rem;
-    margin-top: 1rem;
+  .carousel-slide:hover img {
+    transform: scale(1.1);
+    filter: sepia(0%);
+    -webkit-filter: sepia(0%);
   }
+
+  .carousel-text {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.759);
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    font-weight: bold;
+    font-family: monospace;
+  }
+
+  .carousel-slide:nth-child(2n) .carousel-text {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.759);
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    font-weight: bold;
+    font-family: monospace;
+  }
+
+
+  .carousel-text h3 {
+    font-size: 12px;
+  }
+  
+
+  @media (min-width: 768px) {
+    .carousel-text h3 {
+      font-size: 1.2rem;
+    }
+    .card {
+      max-width: 300px;
+    }
+    .card-title {
+      font-size: 14px;
+    }
+    .card-body {
+      padding: 2%;
+    }
+    .card-footer {
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .carousel-text h3 {
+      font-size: 2rem;
+    }
+    .card {
+      max-width: 400px;
+    }
+    .card-title {
+      font-size: 16px;
+    }
+    .card-body {
+      padding: 2%;
+    }
+    .card-footer {
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .carousel-text h3 {
+      font-size: 2.5rem;
+    }
+    .card {
+      max-width: 500px;
+    }
+    .card-title {
+      font-size: 18px;
+    }
+    .card-body {
+      padding: 2%;
+    }
+    .card-footer {
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+  
 </style>
 </head>
 
@@ -357,45 +335,48 @@
 
   <!--Carousel-->
   <div class="carousel-container">
-    <div class="carousel-track" id="carousel">
-      <!-- Doppia serie per loop infinito -->
-      <div class="carousel-slide">
-        <img th:src="@{/images/concerto1.jpg}" alt="Concerto 1">
-        <div class="carousel-text">
-          <h3>For a lot of good fun</h3>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carousel">
+        <!-- Doppia serie per loop infinito -->
+        <div class="carousel-slide">
+          <img th:src="@{/images/concerto1.jpg}" alt="Concerto 1">
+          <div class="carousel-text">
+            <h3>For a lot of good fun</h3>
+          </div>
         </div>
-      </div>
-      <div class="carousel-slide">
-        <img th:src="@{/images/concerto2.jpg}" alt="Concerto 2">
-        <div class="carousel-text">
-          <h3>For a summer party</h3>
+        <div class="carousel-slide">
+          <img th:src="@{/images/concerto2.jpg}" alt="Concerto 2">
+          <div class="carousel-text">
+            <h3>For a summer party</h3>
+          </div>
         </div>
-      </div>
-      <div class="carousel-slide">
-        <img th:src="@{/images/concerto3.jpg}" alt="Concerto 3">
-        <div class="carousel-text">
-          <h3>Or a winter warm up</h3>
+        <div class="carousel-slide">
+          <img th:src="@{/images/concerto3.jpg}" alt="Concerto 3">
+          <div class="carousel-text">
+            <h3>Or a winter warm up</h3>
+          </div>
         </div>
-      </div>
-      <div class="carousel-slide">
-        <img th:src="@{/images/concerto4.jpg}" alt="Concerto 4">
-        <div class="carousel-text">
-          <h3>You'll never be alone</h3>
+        <div class="carousel-slide">
+          <img th:src="@{/images/concerto4.jpg}" alt="Concerto 4">
+          <div class="carousel-text">
+            <h3>You'll never be alone</h3>
+          </div>
         </div>
-      </div>
-      <div class="carousel-slide">
-        <img th:src="@{/images/concerto5.jpg}" alt="Concerto 5">
-        <div class="carousel-text">
-          <h3>We're all on the same page</h3>
+        <div class="carousel-slide">
+          <img th:src="@{/images/concerto5.jpg}" alt="Concerto 5">
+          <div class="carousel-text">
+            <h3>We're all on the same page</h3>
+          </div>
         </div>
-      </div>
-      <div class="carousel-slide">
-        <img th:src="@{/images/concerto6.jpg}" alt="Concerto 1">
-        <div class="carousel-text">
-          <h3>2Ticket's home page...</h3>
+        <div class="carousel-slide">
+          <img th:src="@{/images/concerto6.jpg}" alt="Concerto 6">
+          <div class="carousel-text">
+            <h3>2Ticket's home page...</h3>
+          </div>
         </div>
       </div>
     </div>
+    <div class="carousel-mask"></div>
   </div>
 
   <!--th:each="concert : ${concerti}"-->
@@ -404,7 +385,7 @@
 
     <div th:each="concert : ${concerti}" class="col-md-4 card p-4 m-5" id="box">
 
-      <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+      <img th:src="@{/images/concerto1.jpg}" alt="Logo" width="160">
       <div class="card-body">
         <h2 th:text="${concert.concertName}"></h2>
         <h4 th:text="${concert.artist}" class="card-title">Artista 1</h4>
@@ -422,7 +403,7 @@
     <div class="main-content container mt-5 mb-5 p-5 bg-light shadow">
       <div class="row justify-content-center">
         <!--Concerto 1-->
-        <div class="col-md-4 card p-4 m-5" id="carta">
+        <div class="col-6 card p-4 m-5" id="carta">
 
           <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
           <div class="card-body">
@@ -437,7 +418,19 @@
         </div>
 
         <!-- Concerto 2 -->
-        <div class="col-md-4 card p-4 m-5">
+        <div class="col-6 card p-4 m-5">
+          <img th:src="@{/images/concerto2.jpg}" alt="Logo" width="160">
+          <div class="card-body">
+            <h4 class="card-title">Artista 2</h4>
+            <p class="card-text">Città: </p>
+            <p class="card-text">Data: </p>
+            <p class="card-text">Location: </p>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Scopri di più</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 card p-4 m-5">
           <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
           <div class="card-body">
             <h4 class="card-title">Artista 2</h4>
@@ -449,19 +442,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 card p-4 m-5">
-          <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
-          <div class="card-body">
-            <h4 class="card-title">Artista 2</h4>
-            <p class="card-text">Città: </p>
-            <p class="card-text">Data: </p>
-            <p class="card-text">Location: </p>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Scopri di più</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 card p-4 m-5">
+        <div class="col-6 card p-4 m-5">
           <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
           <div class="card-body">
             <h4 class="card-title">Artista 2</h4>
@@ -486,23 +467,23 @@
           </div>
           <div class="row">
             <div class="col-md-3 p-3">
-              <a class="text-dark" href="#">chi siamo</a>
+              <a href="#">chi siamo</a>
             </div>
             <div class="col-md-3 p-3">
-              <a class="text-dark" href="#">chi siamo</a>
+              <a href="#">chi siamo</a>
             </div>
             <div class="col-md-3 p-3">
-              <a class="text-dark" href="#">cosa facciamo</a>
+              <a href="#">cosa facciamo</a>
             </div>
             <div class="col-md-3 p-3">
               © 2025 Copyright:
-              <a class="text-dark" href="#">Concerti Italia</a>
+              <a href="#">Concerti Italia</a>
             </div>
           </div>
       </footer>
     </div>
   </div>
-<script th:src="@{/script.js}"></script>
+  <script th:src="@{/script.js}"></script>
 </body>
 
 
