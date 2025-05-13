@@ -45,8 +45,11 @@ public class ReservedController {
 
 
     @GetMapping
-    public String renderPage(Model model, @RequestParam(required = false) Integer id, @RequestParam(required = false) String result) {
-        
+    public String renderPage(HttpSession session, Model model, @RequestParam(required = false) Integer id, @RequestParam(required = false) String result) {
+        //impedisco accesso se la sessione non ha credenziali
+        if(session.getAttribute("admin") == null) {
+            return "redirect:/login";
+        }
         List<Concert> concerts = concertService.getAllConcerts();
         
         Concert concertForm;
