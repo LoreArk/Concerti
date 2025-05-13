@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Трв 12 2025 р., 10:56
+-- Час створення: Трв 13 2025 р., 12:05
 -- Версія сервера: 10.4.32-MariaDB
 -- Версія PHP: 8.2.12
 
@@ -92,24 +92,25 @@ CREATE TABLE `concert` (
   `genre` varchar(50) DEFAULT NULL,
   `fk_id_location` int(11) NOT NULL,
   `description` text DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL
+  `foto` varchar(255) DEFAULT NULL,
+  `poster` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп даних таблиці `concert`
 --
 
-INSERT INTO `concert` (`id`, `concert_name`, `artist`, `date`, `genre`, `fk_id_location`, `description`, `foto`) VALUES
-(2, 'The Eras Tour', 'Taylor Swift', '2025-06-21 20:30:00', 'Pop', 1, 'Uno show epico che ripercorre tutte le ere musicali di Taylor Swift.', 'taylor_eras.jpg'),
-(3, 'Justice World Tour', 'Justin Bieber', '2025-07-14 21:00:00', 'Pop', 2, 'Justin Bieber in tour con i successi di \"Justice\" e altri brani celebri.', 'bieber_justice.jpg'),
-(4, 'Renaissance World Tour', 'Beyoncé', '2025-08-01 20:45:00', 'R&B', 3, 'Beyoncé porta sul palco uno spettacolo visuale e sonoro di grande impatto.', 'beyonce_renaissance.jpg'),
-(5, 'Happier Than Ever Tour', 'Billie Eilish', '2025-06-27 21:30:00', 'Alternative', 4, 'Billie Eilish live con i brani dell\'album \"Happier Than Ever\".', 'billie_happier.jpg'),
-(6, 'Divide Tour', 'Ed Sheeran', '2025-09-10 20:00:00', 'Pop-Folk', 5, 'Uno spettacolo intimo ed emozionante con Ed Sheeran.', 'edsheeran_divide.jpg'),
-(7, 'Music of the Spheres', 'Coldplay', '2025-10-05 21:15:00', 'Alternative Rock', 6, 'Colori, energia e messaggi universali nel tour dei Coldplay.', 'coldplay_mots.jpg'),
-(8, 'Rock Believer Tour', 'Scorpions', '2025-08-18 20:00:00', 'Rock', 7, 'I leggendari Scorpions dal vivo con i loro classici.', 'scorpions_rock.jpg'),
-(9, 'End of the Road Tour', 'KISS', '2025-07-30 20:30:00', 'Hard Rock', 8, 'KISS saluta i fan con un tour d\'addio pieno di effetti speciali.', 'kiss_end.jpg'),
-(10, 'After Hours Til Dawn Tour', 'The Weeknd', '2025-09-22 21:00:00', 'R&B/Pop', 9, 'The Weeknd presenta i suoi ultimi successi in un concerto spettacolare.', 'weeknd_afterhours.jpg'),
-(11, 'Maestro in Concert', 'Ludovico Einaudi', '2025-11-01 19:00:00', 'Classica Contemporanea', 10, 'Pianoforte ed emozione pura con Ludovico Einaudi.', 'einaudi_maestro.jpg');
+INSERT INTO `concert` (`id`, `concert_name`, `artist`, `date`, `genre`, `fk_id_location`, `description`, `foto`, `poster`) VALUES
+(2, 'The Eras Tour', 'Taylor Swift', '2025-06-21 20:30:00', 'Pop', 1, 'Uno show epico che ripercorre tutte le ere musicali di Taylor Swift.', 'taylor_eras.jpg', NULL),
+(3, 'Justice World Tour', 'Justin Bieber', '2025-07-14 21:00:00', 'Pop', 2, 'Justin Bieber in tour con i successi di \"Justice\" e altri brani celebri.', 'bieber_justice.jpg', NULL),
+(4, 'Renaissance World Tour', 'Beyoncé', '2025-08-01 20:45:00', 'R&B', 3, 'Beyoncé porta sul palco uno spettacolo visuale e sonoro di grande impatto.', 'beyonce_renaissance.jpg', NULL),
+(5, 'Happier Than Ever Tour', 'Billie Eilish', '2025-06-27 21:30:00', 'Alternative', 4, 'Billie Eilish live con i brani dell\'album \"Happier Than Ever\".', 'billie_happier.jpg', NULL),
+(6, 'Divide Tour', 'Ed Sheeran', '2025-09-10 20:00:00', 'Pop-Folk', 5, 'Uno spettacolo intimo ed emozionante con Ed Sheeran.', 'edsheeran_divide.jpg', NULL),
+(7, 'Music of the Spheres', 'Coldplay', '2025-10-05 21:15:00', 'Alternative Rock', 6, 'Colori, energia e messaggi universali nel tour dei Coldplay.', 'coldplay_mots.jpg', NULL),
+(8, 'Rock Believer Tour', 'Scorpions', '2025-08-18 20:00:00', 'Rock', 7, 'I leggendari Scorpions dal vivo con i loro classici.', 'scorpions_rock.jpg', NULL),
+(9, 'End of the Road Tour', 'KISS', '2025-07-30 20:30:00', 'Hard Rock', 8, 'KISS saluta i fan con un tour d\'addio pieno di effetti speciali.', 'kiss_end.jpg', NULL),
+(10, 'After Hours Til Dawn Tour', 'The Weeknd', '2025-09-22 21:00:00', 'R&B/Pop', 9, 'The Weeknd presenta i suoi ultimi successi in un concerto spettacolare.', 'weeknd_afterhours.jpg', NULL),
+(11, 'Maestro in Concert', 'Ludovico Einaudi', '2025-11-01 19:00:00', 'Classica Contemporanea', 10, 'Pianoforte ed emozione pura con Ludovico Einaudi.', 'einaudi_maestro.jpg', NULL);
 
 -- --------------------------------------------------------
 
