@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.concertportal.model.City;
 import com.concertportal.model.Concert;
@@ -55,10 +59,26 @@ public class ReservedController {
         return "reserved";
     }
 
-    @PostMapping
-    public String formHandler(@RequestBody String entity) {
+    // @PostMapping
+    // @ResponseBody
+    // public ResponseEntity<String> formHandler(@RequestBody Concert receivedData) {
+    //     System.out.println("FORM HANDLER");
+    //     return concertService.registerConcert(receivedData);
+    // }
+
+    @PostMapping("/reserved")
+    @ResponseBody
+    public ResponseEntity<String> formHandler(
+        @ModelAttribute Concert concertForm,  // Usa ModelAttribute per i dati
+        @RequestParam("poster") MultipartFile poster,
+        @RequestParam("artistPhoto") MultipartFile artistPhoto
+    ) {
+        System.out.println("Ricevuto concerto: " + concertForm.getArtist() + ", con immagine: " + poster.getOriginalFilename());
         
-        return entity;
+        // Salva il concerto nel database (se necessario)
+        concertService.registerConcert(concertForm, poster, artistPhoto);
+
+        return ResponseEntity.ok("Operazione Eseguita");
     }
     
     @GetMapping("/delete")
