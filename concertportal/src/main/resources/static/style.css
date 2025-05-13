@@ -1,6 +1,8 @@
 body {
     background-color: #3e0000;
-    font-family: Arial, sans-serif;
+    font-family: monospace;
+    position: relative;
+    min-height: 100%;
 }
 
 .header {
@@ -11,6 +13,15 @@ body {
 
 a {
     text-decoration: none;
+    color: #2c2c2c;
+}
+
+a:hover {
+    color: #ff4e45;
+}
+
+a:visited {
+    color: #00000075;
 }
 
 
@@ -63,10 +74,8 @@ a-waves {
     position: absolute;
     top: 0;
     left: 0;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 200vh;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     border: #151515 1px solid;
     z-index: -1;
