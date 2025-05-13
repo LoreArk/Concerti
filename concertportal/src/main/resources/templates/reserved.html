@@ -224,53 +224,55 @@
 
             <h2 class="text-center mb-4">Gestione Concerti</h2>
             <!--aggiungo campi dell'imput | collego le altre pagine | visualizzatore lista con tasto modifica o nascondi  |  -->
-            <form id="concertForm" class="row g-3">
+            <form id="concertForm" class="row g-3" enctype="multipart/form-data">
                 <div class="col-md-4">
-                    <input type="text" class="form-control" th:value="${concertForm.artist}" placeholder="Artista"
+                    <input name="artist" type="text" class="form-control" th:value="${concertForm.artist}" placeholder="Artista"
                         id="artist" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.concertName}"
+                    <input name="concert" type="text" class="form-control" th:value="${concertForm.concertName}"
                         placeholder="Titolo del concerto" id="concert_name" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.genre}"
+                    <input name="genre" type="text" class="form-control" th:value="${concertForm.genre}"
                         placeholder="Genere musicale" id="genre" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.city.name}"
+                    <input name="city" type="text" class="form-control" th:value="${concertForm.location.city.name}"
                         placeholder="Città" id="city" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.region.name}"
+                    <input name="region" type="text" class="form-control" th:value="${concertForm.location.region.name}"
                         placeholder="Regione" id="region" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.name}" placeholder="Venue"
+                    <input name="venue" type="text" class="form-control" th:value="${concertForm.location.name}" placeholder="Venue"
                         id="venue" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.address}"
+                    <input name="address" type="text" class="form-control" th:value="${concertForm.location.address}"
                         placeholder="indirizzo" id="address" required>
                 </div>
                 <div class="col-md-3">
                     <!-- <input type="date" class="form-control" th:value="${concertForm.date}" id="date" required> -->
-                    <input type="date" class="form-control"
+                    <input name="day" type="date" class="form-control"
                         th:value="${#temporals.format(concertForm.date, 'yyyy-MM-dd')}" id="date" required>
                 </div>
                 <div><label for="orario">Scegli l'orario:</label>
-                    <input type="time" id="orario" name="orario"></div>               
-
+                    <!-- <input type="time" id="orario" name="orario"> -->
+                     <input type="time" id="orario" name="orario"
+                         th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
+                </div>         
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupFile01">Locandina</label>
-                    <input type="file" class="form-control" id="inputGroupFile01">
+                    <input name="poster" type="file" class="form-control" id="inputGroupFile01">
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupFile01">Foto Artista</label>
-                    <input type="file" class="form-control" id="inputGroupFile01">
+                    <input name="photo" type="file" class="form-control" id="inputGroupFile01">
                 </div>
                 <div class="col-md-2 d-grid">
-                    <button type="submit" class="btn btn-primary">Aggiungi</button>
+                    <button type="submit" id="concertSubmit" class="btn btn-primary">Aggiungi</button>
                 </div>
             </form>
             <div class="mt-4" id="concertList" style="animation: slideIn 0.8s ease-in-out;">

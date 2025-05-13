@@ -10,19 +10,9 @@
   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 <title>Index</title>
 <link rel="stylesheet" th:href="@{/style.css}">
+<link rel="script" th:src="@{/script.js}"></link>
 </link>
 <style>
-  .card {
-    border-radius: 2rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 2%;
-  }
-
   .card-body {
     padding: 2%;
   }
@@ -30,11 +20,6 @@
   .card-title {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-  }
-
-  .card-text {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
   }
 
   .card-footer {
@@ -73,18 +58,157 @@
     animation-range: entry 0 cover 40%;
   }
 
-  @keyframes appear {
-    from {
-      opacity: 0;
-      scale: 0.5;
+    .card-footer {
+      text-align: center;
+      padding: 1rem;
+
     }
 
-    to {
-      opacity: 1;
-      scale: 1;
-    }
-  }
 
+    #carta {
+      margin: 5%;
+      padding: 4%;
+      box-shadow: 10px 10px;
+      animation: appear linear;
+      animation-timeline: view();
+      animation-range: entry 0 cover 40%;
+    }
+
+    #carta img {
+      width: 100%;
+      height: auto;
+    }
+
+    .card:nth-child(even) {
+      background-color: #ffeeee;
+      box-shadow: 10px 10px;
+      animation: slidedx linear;
+      animation-timeline: view();
+      animation-range: entry 0 cover 40%;
+    }
+
+    .card:nth-child(odd) {
+      background-color: #ffffff73;
+      box-shadow: 10px 10px;
+      animation: slidesx linear;
+      animation-timeline: view();
+      animation-range: entry 0 cover 40%;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        scale: 0.5;
+      }
+
+      to {
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    @keyframes slidesx {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slidedx {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    #box {
+      background-color: #30000073;
+      box-shadow: 10px 10px;
+      margin-bottom: 20px;
+      animation: appear linear;
+      animation-timeline: view();
+      animation-range: entry 0 cover 40%;
+      color: #ffeeee;
+
+    }
+
+    .carousel-container {
+      width: 85%;
+      height: 80vh;
+      overflow: hidden;
+      position: relative;
+      border-radius: 15px;
+      margin: 0 auto;
+      margin-top: 5%;
+
+
+    }
+
+    .carousel-track {
+      display: flex;
+      animation: scroll-left 10s linear infinite;
+    }
+
+    .carousel-slide {
+      position: relative;
+      flex-shrink: 0;
+      width: 60%;
+      margin-right: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 20s ease;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 80vh;
+      object-fit: cover;
+      transition: transform 30s linear;
+      filter: sepia(100%);
+      -webkit-filter: sepia(100%);
+    }
+
+    .carousel-slide:hover img {
+      transform: scale(1.5);
+    }
+
+    .carousel-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 2rem;
+      color: #ffeeee96;
+      width: 100%;
+      justify-content: left;
+      display: flex;
+      flex-direction: column;
+      font-family: fantasy;
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-273%);
+      }
+    }
+
+    .carousel-text h3 {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      margin-top: 1rem;
+    }
+
+    
   @keyframes slidesx {
     from {
       transform: translateX(-100%);
