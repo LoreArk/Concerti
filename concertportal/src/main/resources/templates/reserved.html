@@ -248,7 +248,10 @@
                     <input type="text" class="form-control" th:value="${concertForm.location.address}" placeholder="indirizzo" id="address" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" th:value="${concertForm.date}" id="date" required>
+                    <!-- <input type="date" class="form-control" th:value="${concertForm.date}" id="date" required> -->
+                     <input type="date" class="form-control" 
+                        th:value="${#temporals.format(concertForm.date, 'yyyy-MM-dd')}" 
+                        id="date" required>
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupFile01">Locandina</label>
