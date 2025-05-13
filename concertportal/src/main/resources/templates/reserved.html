@@ -205,7 +205,7 @@
                                 <li class="nav-item">
                                     <a th:href="@{/login}" class="nav-link">Area Amministratore</a>
                                 </li>
-                               
+
                                 <li class="nav-item">
                                     <!-- <a class="nav-link disabled" href="#" tabindex="-1"
                                         aria-disabled="true">Disabled</a>-->
@@ -226,30 +226,41 @@
             <!--aggiungo campi dell'imput | collego le altre pagine | visualizzatore lista con tasto modifica o nascondi  |  -->
             <form id="concertForm" class="row g-3">
                 <div class="col-md-4">
-                    <input type="text" class="form-control" th:value="${concertForm.artist}" placeholder="Artista" id="artist" required>
+                    <input type="text" class="form-control" th:value="${concertForm.artist}" placeholder="Artista"
+                        id="artist" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.concertName}" placeholder="Titolo del concerto" id="concert_name"
-                        required>
+                    <input type="text" class="form-control" th:value="${concertForm.concertName}"
+                        placeholder="Titolo del concerto" id="concert_name" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.genre}" placeholder="Genere musicale" id="genre" required>
+                    <input type="text" class="form-control" th:value="${concertForm.genre}"
+                        placeholder="Genere musicale" id="genre" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.city.name}" placeholder="Città" id="city" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.city.name}"
+                        placeholder="Città" id="city" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.region.name}" placeholder="Regione" id="region" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.region.name}"
+                        placeholder="Regione" id="region" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.name}" placeholder="Venue" id="venue" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.name}" placeholder="Venue"
+                        id="venue" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" th:value="${concertForm.location.address}" placeholder="indirizzo" id="address" required>
+                    <input type="text" class="form-control" th:value="${concertForm.location.address}"
+                        placeholder="indirizzo" id="address" required>
                 </div>
                 <div class="col-md-3">
-                    <input type="date" class="form-control" th:value="${concertForm.date}" id="date" required>
+                    <!-- <input type="date" class="form-control" th:value="${concertForm.date}" id="date" required> -->
+                    <input type="date" class="form-control"
+                        th:value="${#temporals.format(concertForm.date, 'yyyy-MM-dd')}" id="date" required>
                 </div>
+                <div><label for="orario">Scegli l'orario:</label>
+                    <input type="time" id="orario" name="orario"></div>               
+
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupFile01">Locandina</label>
                     <input type="file" class="form-control" id="inputGroupFile01">
@@ -257,7 +268,7 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupFile01">Foto Artista</label>
                     <input type="file" class="form-control" id="inputGroupFile01">
-                  </div>
+                </div>
                 <div class="col-md-2 d-grid">
                     <button type="submit" class="btn btn-primary">Aggiungi</button>
                 </div>
@@ -291,15 +302,17 @@
                         <td th:text="${concert.genre}"></td>
                         <td><a th:href="@{/reserved(id=${concert.id})}" class="btn btn-light">Modifica</a></td>
                         <td>
-                            <button class="btn btn-sm btn-outline-danger delete" th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
+                            <button class="btn btn-sm btn-outline-danger delete"
+                                th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
                                 Elimina
-                            </button></td>
+                            </button>
+                        </td>
                     </tr>
 
                 </table>
 
             </div>
-            
+
         </div>
 
         <!-- <div class="footer">
@@ -332,17 +345,17 @@
 
 </body>
 
-    <script>
-            document.querySelectorAll(".delete").forEach(function(button) {
-                button.addEventListener("click", function() {
-                const receivedValues = this.getAttribute("value");
-                const receivedDatas = receivedValues.split("@");
-                const confirmDelete = confirm("Sei sicuro di voler cancellare " + receivedDatas[0]);
-                if(confirmDelete)
-                    window.location.href = "/reserved/delete?id=" + receivedDatas[1];
-                });
-            });
-    </script>
+<script>
+    document.querySelectorAll(".delete").forEach(function (button) {
+        button.addEventListener("click", function () {
+            const receivedValues = this.getAttribute("value");
+            const receivedDatas = receivedValues.split("@");
+            const confirmDelete = confirm("Sei sicuro di voler cancellare " + receivedDatas[0]);
+            if (confirmDelete)
+                window.location.href = "/reserved/delete?id=" + receivedDatas[1];
+        });
+    });
+</script>
 
 <!--Script form-->
 <script>
