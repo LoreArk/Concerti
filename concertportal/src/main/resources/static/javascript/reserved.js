@@ -1,28 +1,34 @@
 const submitBtn = document.getElementById("concertSubmit");
 const concertForm = document.getElementById("concertForm");
 
+let uploadedImage = null;
+
 const formCheck = () => {
     return true;
     //const verify = 
 }
 
+
 concertForm.addEventListener("submit", event => {
     event.preventDefault();
+    console.log("SUBMIT");
     if(formCheck()) {
-        const formData = new FormData(concertForm);
-        fetch
-        (
-            "/reserved",
-            {
-                method: "POST",
-                body: formData
-            }
-        )
-        .then(text => {
-            if (text === "Operazione Eseguita") {
-                window.location.href = "/reserved";
-            }
+        const formData = Object.fromEntries(new FormData(concertForm).entries());
+        
+        fetch("/reserved", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(formData)
         })
-        .catch(error => console.log(error));
+        .then(response => {
+            return response.text().then(text => {
+                if(response.status === 200 && text === "Operazione Eseguita") {
+                window.location.href = "/reserved";
+                }
+            })
+        })
+        .catch(error => console.log(error))
+  
     }
 });
+

@@ -102,11 +102,9 @@
         <div class="row">
             <div class="col-lg-6"><img th:src="@{/images/concerto1.jpg}" alt="concerto"></div>
             <div class="col-lg-6">
-                <!--
             <div class="col-lg-4">
-                <img th:src="|@{/images/} ${concert.foto}|" alt="Foto concerto">
+                <img th:src="@{${concert.foto}}" alt="Foto concerto">
             </div>
-            -->
                 <ul class="list-group">
                     <li class="list-group-item" th:text="|Nome: ${concert.concertName}|"></li>
                     <li class="list-group-item" th:text="|Descrizione: ${concert.description}|"></li>
