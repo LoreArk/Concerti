@@ -149,20 +149,19 @@
     <!-- HEADER -->
     <div class="main-content">
         <div class="row mb-5">
-            <h2>Concerto dettaglio</h2>
+            <h2 th:text="|${concert.concertName}|">Concerto dettaglio</h2>
         </div>
         <div class="row">
-            <div class="col-lg-6"><img th:src="${concert.foto}" alt="concerto"><!--<img th:src="@{${concert.foto}}" alt="Foto concerto">--></div>
+            <div class="col-lg-6"><img th:src="${concert.foto}" alt="concerto"></div>
             <div class="col-lg-6">
                 <ul class="list-group">
-                    <li class="list-group-item" th:text="|Nome: ${concert.concertName}|"></li>
-                    <li class="list-group-item" th:text="|Descrizione: ${concert.description}|"></li>
-                    <li class="list-group-item" th:text="|Artista: ${concert.artist}|"></li>
-                    <li class="list-group-item" th:text="|Genere: ${concert.genre}|"></li>
+                    <li class="list-group-item" th:text="|${concert.description}|"></li>
+                    <li class="list-group-item" th:text="|${concert.artist}|"></li>
+                    <li class="list-group-item" th:text="|${concert.genre}|"></li>
                     <li class="list-group-item"
-                        th:text="|Data e ora: ${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}|"></li>
-                    <li class="list-group-item" th:text="|Città: ${concert.location.city.name}|"></li>
-                    <li class="list-group-item" th:text="|Indirizzo: ${concert.location.address}|"></li>
+                        th:text="|${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}|"></li>
+                    <li class="list-group-item" th:text="|${concert.location.city.name}|"></li>
+                    <li class="list-group-item" th:text="|${concert.location.address}|"></li>
                     <!-- Campo PREZZO momentaneamente assente 
                 <li class="list-group-item" th:text="|Prezzo: ${}|"></li> -->
                     <li class="nav-item">
