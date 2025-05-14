@@ -20,15 +20,26 @@
   }
 
   .card-body {
-    padding: 2%;
     height: 100%;
     max-height: 350px;
-    padding: 1rem;
+    border-top: 2px solid #fffdef !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #fffbeec1;
+    box-shadow: inset 0 -10px 15px rgba(255, 160, 160, 0.897),
+      0 0 10px rgba(77, 77, 77, 0.706);
+  }
+
+  .card-text {
+    font-size: 12px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    color: #2c2c2c;
   }
 
   .card-title {
     font-size: 10px;
-    margin-bottom: 1rem;
+    margin-bottom: 2%;
   }
 
   .card-footer {
@@ -52,39 +63,13 @@
     animation-range: entry 0 cover 40%;
   }
 
-  #carta {
-    margin: 5%;
-    padding: 4%;
-    box-shadow: 10px 10px;
-    animation: appear ease-in-out;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;
-  }
-
   .card img {
-    border-radius: 10px;
-    margin-bottom: 5%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     width: auto;
-    height: 200px;
+    max-height: 300px;
+    max-width: 230px;
     object-fit: cover;
-  }
-
-  
-
-  .card:nth-child(even) {
-    background-color: #ffeeee;
-    box-shadow: 10px 10px;
-    animation: slidedx ease-in-out;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;
-  }
-
-  .card:nth-child(odd) {
-    background-color: #ffffff73;
-    box-shadow: 10px 10px;
-    animation: slidesx ease-in-out;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;
   }
 
   @keyframes appear {
@@ -293,6 +278,7 @@
     .carousel-viewport {
       max-width: 2000px;
     }
+
     .carousel-text h3 {
       font-size: 2.5rem;
     }
@@ -438,7 +424,7 @@
   <!--th:each="concert : ${concerti}"-->
   <div class="row justify-content-center">
     <div th:each="concert : ${concerti}" class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
-      <div class="img-container d-flex justify-content-center m-3" style="height: 40%; overflow: hidden;">
+      <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
         <img th:src="${concert.poster}" alt="concert poster" class="card-img-top">
       </div>
       <div class="card-body">
@@ -455,9 +441,10 @@
     <!-- LIGHT BACKGROUND CONCERTS CARDS -->
     <div class="main-content container mt-5 mb-5 p-5 bg-light shadow">
       <div class="row justify-content-center">
-        <!--Concerto 1-->
-        <div class="col-6 card p-4 m-5" id="carta">
-          <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+        <div class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
+          <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
+            <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+          </div>
           <div class="card-body">
             <h4 class="card-title">Artista 1</h4>
             <p class="card-text">Città: </p>
@@ -468,11 +455,12 @@
             </div>
           </div>
         </div>
-        <!-- Concerto 2 -->
-        <div class="col-6 card p-4 m-5">
-          <img th:src="@{/images/concerto2.jpg}" alt="Logo" width="160">
+        <div class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
+          <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
+            <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+          </div>
           <div class="card-body">
-            <h4 class="card-title">Artista 2</h4>
+            <h4 class="card-title">Artista 1</h4>
             <p class="card-text">Città: </p>
             <p class="card-text">Data: </p>
             <p class="card-text">Location: </p>
@@ -481,10 +469,12 @@
             </div>
           </div>
         </div>
-        <div class="col-6 card p-4 m-5">
-          <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+        <div class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
+          <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
+            <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+          </div>
           <div class="card-body">
-            <h4 class="card-title">Artista 2</h4>
+            <h4 class="card-title">Artista 1</h4>
             <p class="card-text">Città: </p>
             <p class="card-text">Data: </p>
             <p class="card-text">Location: </p>
@@ -493,10 +483,12 @@
             </div>
           </div>
         </div>
-        <div class="col-6 card p-4 m-5">
-          <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+        <div class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
+          <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
+            <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+          </div>
           <div class="card-body">
-            <h4 class="card-title">Artista 2</h4>
+            <h4 class="card-title">Artista 1</h4>
             <p class="card-text">Città: </p>
             <p class="card-text">Data: </p>
             <p class="card-text">Location: </p>
