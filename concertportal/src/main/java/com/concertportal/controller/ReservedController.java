@@ -17,6 +17,8 @@ import com.concertportal.model.City;
 import com.concertportal.model.Concert;
 import com.concertportal.model.Location;
 import com.concertportal.model.Region;
+import com.concertportal.repository.CityRepository;
+import com.concertportal.service.CityService;
 import com.concertportal.service.ConcertService;
 import com.concertportal.service.LocationService;
 
@@ -36,6 +38,9 @@ public class ReservedController {
 
     @Autowired
     private LocationService locationService;
+
+    @Autowired
+    private CityService cityService;
 
     private Map<String, String> errors;
 
@@ -67,6 +72,9 @@ public class ReservedController {
             locations = locationService.getAllLocationsById(cityId);
         }
 
+        List<City> cities = cityService.getAllCities();
+
+
         System.out.println("CONCERT LOCATION ID:" + concertForm.getLocation().getId());
         
         for (Location location : locations) {
@@ -78,6 +86,7 @@ public class ReservedController {
         model.addAttribute("result", result);
 
         model.addAttribute("locations", locations);
+        model.addAttribute("cities", cities);
 
         return "reserved";
     }
