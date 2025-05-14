@@ -56,6 +56,8 @@ public class ReservedController {
             return "redirect:/login";
         }
         List<Concert> concerts = concertService.getAllConcerts();
+        List<City> cities = new ArrayList<>();
+        List<Location> locations = new ArrayList<>();
         
         Concert concertForm;
         if (id == null) {
@@ -67,14 +69,11 @@ public class ReservedController {
             concertForm = concertService.getConcertById(id);
         }
 
-        List<Location> locations = new ArrayList<>();
         if(cityId != null) {
             locations = locationService.getAllLocationsById(cityId);
         }
-
-        List<City> cities = cityService.getAllCities();
-
-
+        
+        cities = cityService.getAllCities();
         System.out.println("CONCERT LOCATION ID:" + concertForm.getLocation().getId());
         
         for (Location location : locations) {

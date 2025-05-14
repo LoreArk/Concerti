@@ -154,16 +154,22 @@
                     <div class="col-12 col-md-6">
                         <select name="citySelect" id="citySelect" onchange="cityChosen()">
                             <option value="" hidden>Scegli la città</option>
-                            <option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.id}">
+                            <option th:each="city : ${cities}" 
+                                    th:text="${city.name}" 
+                                    th:value="${city.id}"
+                                    th:selected="${city.id == concertForm.location.city.id ? true : false}">
                             </option>
                         </select>
                     </div>
                     <div class="col-12 col-md-6">
-                        <select name="locationSelect" id="locationSelect" onchange="locationChosen()" disabled>
+                        <select name="locationSelect" id="locationSelect" onchange="locationChosen()" th:disabled="${concertForm.id == null}">
                             <option value="" hidden>Scegli la location</option>
                             <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
-                            <option th:each="location : ${locations}" th:text="${location.name}"
-                                th:value="${location.id}"></option>
+                            <option th:each="location : ${locations}" 
+                                th:text="${location.name}"
+                                th:value="${location.id}"
+                                th:selected="${location.id == concertForm.location.id ? true : false}">
+                            </option>
                         </select>
                     </div>
 
