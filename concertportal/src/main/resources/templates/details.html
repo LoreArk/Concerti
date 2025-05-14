@@ -25,6 +25,7 @@
         text-align: center;
         font-weight: bold;
     }
+
     .main-content {
         position: relative;
         z-index: 1;
@@ -104,6 +105,21 @@
         }
     }
 
+    .location-image:hover {
+        transform: scale(1.05);
+        filter: brightness(90%);
+    }
+
+    .location-overlay {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(6px);
+        width: 100%;
+    }
+
+    .location-overlay h3,
+    .location-overlay p {
+        text-align: left;
+    }
 </style>
 
 <body>
@@ -137,9 +153,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/error}">Pricing</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/reserved/logout}"> Logout</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -147,6 +160,28 @@
         </nav>
     </div>
     <!-- HEADER -->
+    <div id="locationCard" class="row justify-content-center mt-5">
+        <div class="col-lg-12 d-flex justify-content-center">
+
+            <div class="position-relative w-100" style="max-width: 80vw; overflow: hidden; border-radius: 12px;">
+
+                <!-- Immagine con effetto hover -->
+                <img th:src="${concert.location.photo}" alt="concerto" class="img-fluid location-image"
+                    style="width: 100%; transition: transform 0.4s ease;">
+
+                <!-- Testo sovrapposto con sfocatura -->
+                <div class="position-absolute top-0 start-0 p-4 text-white location-overlay w-100">
+                    <h3 class="mb-2" th:text="${concert.location.city.name}" style="text-align: left;"></h3>
+                    <p th:text="${concert.location.address}" style="text-align: left;"></p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
     <div class="main-content">
         <div class="row mb-5">
             <h2 th:text="|${concert.concertName}|">Concerto dettaglio</h2>
@@ -162,15 +197,17 @@
                         th:text="|${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}|"></li>
                     <li class="list-group-item" th:text="|${concert.location.city.name}|"></li>
                     <li class="list-group-item" th:text="|${concert.location.address}|"></li>
-                    
-              <li class="list-group-item" th:text="|A partire da: ${concert.price} euro |"></li> 
+
+                    <li class="list-group-item" th:text="|A partire da: ${concert.price} euro |"></li>
                     <li class="nav-item">
-                        <a th:href="@{/error}" ><button type="submit" class="btn btn-ripple btn-primary" value="acquista">Acquista</button></a>
+                        <a th:href="@{/error}"><button type="submit" class="btn btn-ripple btn-primary"
+                                value="acquista">Acquista</button></a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
     <!-- FOOTER -->
     <div class="footer">
         <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
