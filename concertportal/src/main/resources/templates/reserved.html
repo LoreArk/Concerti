@@ -154,19 +154,17 @@
                     <div class="col-12 col-md-6">
                         <select name="citySelect" id="citySelect" onchange="cityChosen()">
                             <option value="" hidden>Scegli la città</option>
-                            <option th:each="city : ${cities}" 
-                                    th:text="${city.name}" 
-                                    th:value="${city.id}"
-                                    th:selected="${city.id == concertForm.location.city.id ? true : false}">
+                            <option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.id}"
+                                th:selected="${city.id == concertForm.location.city.id ? true : false}">
                             </option>
                         </select>
                     </div>
                     <div class="col-12 col-md-6">
-                        <select name="locationSelect" id="locationSelect" onchange="locationChosen()" th:disabled="${concertForm.id == null}">
+                        <select name="locationSelect" id="locationSelect" onchange="locationChosen()"
+                            th:disabled="${concertForm.id == null}">
                             <option value="" hidden>Scegli la location</option>
                             <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
-                            <option th:each="location : ${locations}" 
-                                th:text="${location.name}"
+                            <option th:each="location : ${locations}" th:text="${location.name}"
                                 th:value="${location.id}"
                                 th:selected="${location.id == concertForm.location.id ? true : false}">
                             </option>
@@ -184,6 +182,19 @@
                         <input name="time" type="time" class="form-control" id="orario"
                             th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
                     </div>
+
+
+                    <!--Description Input-->
+                    <div class="col-12 col-md-4">
+                        <textarea id="description" name="descriprion" rows="6" cols="70"
+                            placeholder="Descrizione concerto" class="form-control"></textarea>
+                    </div>
+
+                    <!--Price input-->
+                    <div class="col-12 col-md-4">                    
+                    <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Prezzo in euro">
+                    </div>
+
 
                     <!-- File Inputs -->
                     <div class="col-12 col-md-6">
@@ -340,7 +351,7 @@
         document.getElementById('concertList').appendChild(card);
         this.reset();
     });
-      function cityChosen() {
+    function cityChosen() {
         const locationSelect = document.getElementById("locationSelect");
         locationSelect.disabled = false;
         locationSelect.innerHTML = "<option value='' hidden>Scegli la location</option> <option th:each='location : ${locations}' th:text='${location.name}' th:value='${location.id}'></option>";
