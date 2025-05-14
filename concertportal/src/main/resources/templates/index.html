@@ -16,13 +16,18 @@
 <style>
   .card {
     max-width: 245px;
+    height: 100%;
   }
+
   .card-body {
     padding: 2%;
+    height: 100%;
+    max-height: 350px;
+    padding: 1rem;
   }
 
   .card-title {
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 1rem;
   }
 
@@ -57,11 +62,14 @@
   }
 
   .card img {
-    width: 100%;
-    height: auto;
     border-radius: 10px;
     margin-bottom: 5%;
+    width: auto;
+    height: 200px;
+    object-fit: cover;
   }
+
+  
 
   .card:nth-child(even) {
     background-color: #ffeeee;
@@ -120,7 +128,7 @@
     animation-timeline: view();
     animation-range: entry 0 cover 40%;
     color: #2c2c2c;
-
+    height: 100%;
   }
 
   .carousel-container {
@@ -227,21 +235,25 @@
   .carousel-text h3 {
     font-size: 12px;
   }
-  
+
 
   @media (min-width: 768px) {
     .carousel-text h3 {
       font-size: 1.2rem;
     }
+
     .card {
       max-width: 300px;
     }
+
     .card-title {
-      font-size: 14px;
+      font-size: 12px;
     }
+
     .card-body {
       padding: 2%;
     }
+
     .card-footer {
       text-align: center;
       padding: 1rem;
@@ -252,15 +264,19 @@
     .carousel-text h3 {
       font-size: 2rem;
     }
+
     .card {
       max-width: 400px;
     }
+
     .card-title {
-      font-size: 16px;
+      font-size: 14px;
     }
+
     .card-body {
       padding: 2%;
     }
+
     .card-footer {
       text-align: center;
       padding: 1rem;
@@ -271,21 +287,24 @@
     .carousel-text h3 {
       font-size: 2.5rem;
     }
+
     .card {
       max-width: 500px;
     }
+
     .card-title {
-      font-size: 18px;
+      font-size: 16px;
     }
+
     .card-body {
       padding: 2%;
     }
+
     .card-footer {
       text-align: center;
       padding: 1rem;
     }
   }
-  
 </style>
 </head>
 
@@ -296,7 +315,6 @@
   <div class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd; padding: 3%;">
       <div class="container-fluid">
-
         <div class="row"><a class="navbar-brand col-md-12" th:href="@{/}"><img th:src="@{/2TICKET.png}" alt="Logo"
               width="160"> </a></div>
         <div class="row" style="width: 45vw;">
@@ -305,10 +323,7 @@
             <div class="tog1"></div>
             <div class="tog2"></div>
             <div class="tog3"></div>
-
           </button>
-
-
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
@@ -330,7 +345,6 @@
     </nav>
   </div>
   <!-- HEADER -->
-
   <!--Carousel-->
   <div class="carousel-container">
     <div class="carousel-viewport">
@@ -412,34 +426,28 @@
     </div>
     <div class="carousel-mask"></div>
   </div>
-
   <!--th:each="concert : ${concerti}"-->
-
   <div class="row justify-content-center">
-
-    <div th:each="concert : ${concerti}" class="col-md-4 card p-4 m-5" id="box">
-
-      <img th:src="${concert.poster}" alt="Logo" width="160">
+    <div th:each="concert : ${concerti}" class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
+      <div class="img-container d-flex justify-content-center m-3" style="height: 40%; overflow: hidden;">
+        <img th:src="${concert.poster}" alt="concert poster" class="card-img-top">
+      </div>
       <div class="card-body">
         <h2 th:text="${concert.concertName}"></h2>
         <h4 th:text="${concert.artist}" class="card-title">Artista 1</h4>
-        <!--artist qui e' una variabile di concert model-->
         <p th:text="${concert.location.city.name}" class="card-text">Città: </p>
         <p class="card-text" th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}"></p>
-
         <p class="card-text" th:text="|Location: ${concert.location.name}|"></p>
         <div class="card-footer">
           <a th:href="@{/details(id=${concert.id})}" class="btn btn-primary">Scopri di più</a>
         </div>
       </div>
     </div>
-
     <!-- LIGHT BACKGROUND CONCERTS CARDS -->
     <div class="main-content container mt-5 mb-5 p-5 bg-light shadow">
       <div class="row justify-content-center">
         <!--Concerto 1-->
         <div class="col-6 card p-4 m-5" id="carta">
-
           <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
           <div class="card-body">
             <h4 class="card-title">Artista 1</h4>
@@ -451,7 +459,6 @@
             </div>
           </div>
         </div>
-
         <!-- Concerto 2 -->
         <div class="col-6 card p-4 m-5">
           <img th:src="@{/images/concerto2.jpg}" alt="Logo" width="160">
@@ -520,9 +527,6 @@
   </div>
   <script th:src="@{/script.js}"></script>
 </body>
-
-
-
 <!--Script carosello-->
 <script>
   // Nessun JS attivo necessario per il semplice auto-scroll continuo
