@@ -182,7 +182,7 @@
 
         <p th:if="${error != null}" th:text="${error}" class="error-message">Errore di autenticazione</p>
 
-        <form action="/login" method="get">
+        <form action="/login" method="post">
 
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
