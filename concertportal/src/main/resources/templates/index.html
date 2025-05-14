@@ -419,7 +419,7 @@
 
     <div th:each="concert : ${concerti}" class="col-md-4 card p-4 m-5" id="box">
 
-      <img th:src="@{/images/concerto1.jpg}" alt="Logo" width="160">
+      <img th:src="${concert.poster}" alt="Logo" width="160">
       <div class="card-body">
         <h2 th:text="${concert.concertName}"></h2>
         <h4 th:text="${concert.artist}" class="card-title">Artista 1</h4>
@@ -434,6 +434,7 @@
       </div>
     </div>
 
+    <!-- LIGHT BACKGROUND CONCERTS CARDS -->
     <div class="main-content container mt-5 mb-5 p-5 bg-light shadow">
       <div class="row justify-content-center">
         <!--Concerto 1-->

@@ -32,4 +32,5 @@ public class Concert {
     @ManyToOne
     @JoinColumn(name = "fk_id_location", referencedColumnName = "id")
     private Location location;
+    
 }

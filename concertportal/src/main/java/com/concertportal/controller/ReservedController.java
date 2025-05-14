@@ -98,28 +98,6 @@ public class ReservedController {
         return concertService.registerConcert(receivedData);
     }
 
-    // @PostMapping
-    // @ResponseBody
-    // public ResponseEntity<String> formHandler(
-    //     @ModelAttribute Concert concertForm,  // Usa ModelAttribute per i dati
-    //     @RequestParam("poster") MultipartFile poster,
-    //     @RequestParam("artistPhoto") MultipartFile artistPhoto
-    // ) {
-    //     System.out.println("Form handler");
-    //     System.out.println("Ricevuto concerto: " + concertForm.getArtist() + 
-    //                     (poster != null && !poster.isEmpty() ? 
-    //                     ", con immagine: " + poster.getOriginalFilename() : ", senza immagine"));
-        
-    //     try {
-    //         // Chiama il servizio per registrare il concerto
-    //         ResponseEntity<String> result = concertService.registerConcert(concertForm, poster, artistPhoto);
-    //         return result;
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-    //             .body("Errore durante il salvataggio: " + e.getMessage());
-    //     }
-    // }
     
     @GetMapping("/delete")
     public String deleteConcert(@RequestParam Integer id, HttpSession session) {
@@ -134,47 +112,4 @@ public class ReservedController {
         return "redirect:/";
     }
     
-    // @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    //     @ResponseBody
-    //     public ResponseEntity<String> formHandler(
-    //         @RequestParam("artist") String artist,
-    //         @RequestParam("concertName") String concertName,
-    //         @RequestParam("genre") String genre,
-    //         @RequestParam("location.city.name") String cityName,
-    //         @RequestParam("location.region.name") String regionName,
-    //         @RequestParam("location.name") String locationName,
-    //         @RequestParam("location.address") String address,
-    //         @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-    //         @RequestParam("time") String time,  // puoi anche parsarlo in LocalTime
-    //         @RequestParam("poster") MultipartFile poster,
-    //         @RequestParam("artistPhoto") MultipartFile artistPhoto
-    //     ) {
-    //         System.out.println("Artista: " + artist + ", poster: " + poster.getOriginalFilename());
-
-    //         Concert concert = new Concert();
-    //         concert.setArtist(artist);
-    //         concert.setConcertName(concertName);
-    //         concert.setGenre(genre);
-
-
-    //          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    //         LocalDateTime dateTime = LocalDateTime.parse(date + " " + time, formatter);
-
-    //         concert.setDate(dateTime);
-
-    //         Location location = new Location();
-    //         City city = new City();
-    //         Region region = new Region();
-
-    //         city.setName(cityName);
-    //         region.setName(regionName);
-    //         location.setCity(city);
-    //         location.setRegion(region);
-    //         location.setName(locationName);
-    //         location.setAddress(address);
-
-    //         concert.setLocation(location);
-
-    //         return concertService.registerConcert(concert, poster, artistPhoto);
-    //     }
 }

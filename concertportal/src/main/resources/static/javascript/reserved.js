@@ -8,6 +8,21 @@ const formCheck = () => {
     //const verify = 
 }
 
+document.getElementById('citySelector').addEventListener('change', function () {
+    const selectedCityId = this.value;
+    const urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.set('cityId', selectedCityId);
+
+    // Se stai anche modificando un concert, conserva l'id nel redirect
+    const concertIdInput = document.querySelector('[name="id"]');
+    if (concertIdInput && concertIdInput.value) {
+        urlParams.set('id', concertIdInput.value);
+    }
+
+    // Ricarica la pagina con i nuovi parametri
+    window.location.href = '/reserved?' + urlParams.toString();
+});
 
 concertForm.addEventListener("submit", event => {
     event.preventDefault();
