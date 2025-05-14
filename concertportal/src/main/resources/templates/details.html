@@ -162,8 +162,8 @@
                         th:text="|${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}|"></li>
                     <li class="list-group-item" th:text="|${concert.location.city.name}|"></li>
                     <li class="list-group-item" th:text="|${concert.location.address}|"></li>
-                    <!-- Campo PREZZO momentaneamente assente 
-                <li class="list-group-item" th:text="|Prezzo: ${}|"></li> -->
+                    
+                <li class="list-group-item" th:text="|Prezzo: ${}|"></li> 
                     <li class="nav-item">
                         <a th:href="@{/error}" ><button type="submit" class="btn btn-ripple btn-primary" value="acquista">Acquista</button></a>
                     </li>
