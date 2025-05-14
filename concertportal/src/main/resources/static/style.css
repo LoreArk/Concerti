@@ -21,7 +21,7 @@ a:hover {
 }
 
 a:visited {
-    color: #00000075;
+    color: #45000075;
 }
 
 
@@ -42,6 +42,7 @@ a:visited {
 .btn-primary {
     background-color: #a50000;
     border-color: #820000;
+    color: #fff;
     padding: 0.5rem 1rem;
     font-size: 1rem;
 }
@@ -49,23 +50,6 @@ a:visited {
 .btn-primary:hover {
     background-color: #820000;
     border-color: #6b0000;
-}
-
-.btn-secondary {
-    background-color: #30000073;
-    border-color: #820000;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    color: #ffeeee;
-
-}
-
-.btn-secondary:hover {
-    background-color: #8b0000f2;
-    border-color: #820000;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    color: #151515;
 }
 
 a-waves {

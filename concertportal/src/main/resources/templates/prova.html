@@ -15,44 +15,6 @@
 </link>
 </link>
 </head>
-<style>
-    a-waves {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-
-    body {
-        position: relative;
-        min-height: 100%;
-    }
-
-    .main-content {
-        position: relative;
-        z-index: 1;
-        padding: 20px;
-        margin-top: 100px;
-        margin-bottom: 100px;
-        margin-left: 20px;
-        margin-right: 20px;
-        text-align: center;
-        color: #a1a1a1;
-        font-family: monospace;
-        font-size: 20px;
-        border-radius: 10px;
-        box-shadow: 10px 10px;
-    }
-
-    .main-content img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
-</style>
-
 <body>
     <a-waves>
         <svg class="js-svg"></svg>
@@ -61,7 +23,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd; padding: 3%;">
             <div class="container-fluid">
 
-                <div class="row"><a class="navbar-brand col-md-12" th:href="@{/}"><img th:src="@{/2TICKET.png}" alt="Logo"
+                <div class="row"><a class="navbar-brand col-md-12" href="#"><img th:src="@{/2TICKET.png}" alt="Logo"
                             width="160"> </a></div>
                 <div class="row" style="width: 45vw;">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -83,10 +45,10 @@
                                 <a th:href="@{/login}" class="nav-link">Area Amministratore</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{/error}">Pricing</a>
+                                <a class="nav-link" href="#">Pricing</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{/reserved/logout}"> Logout</a>
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                             </li>
                         </ul>
                     </div>
@@ -95,29 +57,30 @@
         </nav>
     </div>
     <!-- HEADER -->
-    <div class="main-content">
-        <div class="row mb-5">
-            <h2>Concerto dettaglio</h2>
-        </div>
-        <div class="row">
-            <div class="col-lg-6"><img th:src="@{/images/concerto1.jpg}" alt="concerto"><!--<img th:src="@{${concert.foto}}" alt="Foto concerto">--></div>
-            <div class="col-lg-6">
-                <ul class="list-group">
-                    <li class="list-group-item" th:text="|Nome: ${concert.concertName}|"></li>
-                    <li class="list-group-item" th:text="|Descrizione: ${concert.description}|"></li>
-                    <li class="list-group-item" th:text="|Artista: ${concert.artist}|"></li>
-                    <li class="list-group-item" th:text="|Genere: ${concert.genre}|"></li>
-                    <li class="list-group-item"
-                        th:text="|Data e ora: ${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}|"></li>
-                    <li class="list-group-item" th:text="|Città: ${concert.location.city.name}|"></li>
-                    <li class="list-group-item" th:text="|Indirizzo: ${concert.location.address}|"></li>
-                    <!-- Campo PREZZO momentaneamente assente 
-                <li class="list-group-item" th:text="|Prezzo: ${}|"></li> -->
-                </ul>
+
+    <div class="main-content"
+        style="margin-top: 100px; margin-bottom: 100px; width: 50vw; margin: 100px auto 100px auto; text-align: center; color: #a1a1a1; font-family: monospace; font-size: 20px; border-radius: 10px; box-shadow: 10px 10px;">
+        <h5 th:if="${error != null}" th:text="${error}" class="text-center text-danger"></h5>
+        <form action="/login" method="post" class="container">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" name="email" id="email" required class="form-control">
             </div>
-        </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" required class="form-control">
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                    <input type="submit" value="Accedi" class="btn btn-primary w-100">
+                </div>
+            </div>
+        </form>
     </div>
-    <!-- FOOTER -->
+
+
     <div class="footer">
         <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
             <div class="container-fluid">
@@ -131,7 +94,7 @@
                         <a class="text-dark" href="#">chi siamo</a>
                     </div>
                     <div class="col-md-3 p-3">
-                        <a class="text-dark" href="#">social</a>
+                        <a class="text-dark" href="#">chi siamo</a>
                     </div>
                     <div class="col-md-3 p-3">
                         <a class="text-dark" href="#">cosa facciamo</a>
