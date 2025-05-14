@@ -123,7 +123,6 @@
                         <div class="tog1"></div>
                         <div class="tog2"></div>
                         <div class="tog3"></div>
-
                     </button>
 
 
@@ -153,8 +152,7 @@
             <h2>Concerto dettaglio</h2>
         </div>
         <div class="row">
-            <div class="col-lg-6"><img th:src="@{/images/concerto1.jpg}"
-                    alt="concerto"><!--<img th:src="@{${concert.foto}}" alt="Foto concerto">--></div>
+            <div class="col-lg-6"><img th:src="${concert.foto}" alt="concerto"><!--<img th:src="@{${concert.foto}}" alt="Foto concerto">--></div>
             <div class="col-lg-6">
                 <ul class="list-group">
                     <li class="list-group-item" th:text="|Nome: ${concert.concertName}|"></li>

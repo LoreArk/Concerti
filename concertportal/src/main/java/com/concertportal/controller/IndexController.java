@@ -34,6 +34,7 @@ public class IndexController {
             
             System.out.println("Address: " + concerto.getLocation().getAddress());
             System.out.println("---");
+            
         });
 
         model.addAttribute("concerti", concerti);
