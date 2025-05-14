@@ -150,9 +150,10 @@
   }
 
   .carousel-track {
-    display: flex;
-    animation: scroll-left 10s ease-in-out infinite;
-  }
+  display: flex;
+  animation: scroll-left 10s ease-in-out infinite;
+  transition: transform 0.5s ease-in; /* Transizione graduale */
+}
 
   .carousel-slide {
     position: relative;
@@ -530,15 +531,20 @@
 </body>
 <!--Script carosello-->
 <script>
-  // Nessun JS attivo necessario per il semplice auto-scroll continuo
-  // In caso tu voglia pausa on hover, puoi aggiungere questo:
   const carousel = document.getElementById('carousel');
 
+  // Aggiungi una transizione graduale
+  carousel.style.transition = 'transform 0.5s ease';
+
   carousel.addEventListener('mouseenter', () => {
-    carousel.style.animationPlayState = 'paused';
+    // Imposta un timeout per simulare una pausa graduale
+    setTimeout(() => {
+      carousel.style.animationPlayState = 'paused';
+    }, 200); // Ritardo di 200ms per l'effetto graduale
   });
 
   carousel.addEventListener('mouseleave', () => {
+    // Riprendi l'animazione immediatamente
     carousel.style.animationPlayState = 'running';
   });
 </script>
