@@ -1,5 +1,7 @@
 const submitBtn = document.getElementById("concertSubmit");
 const concertForm = document.getElementById("concertForm");
+const citySelect = document.getElementById('citySelect');
+const locationSelect = document.getElementById('locationSelect');
 
 let uploadedImage = null;
 
@@ -8,21 +10,45 @@ const formCheck = () => {
     //const verify = 
 }
 
-document.getElementById('citySelector').addEventListener('change', function () {
-    const selectedCityId = this.value;
-    const urlParams = new URLSearchParams(window.location.search);
+citySelect.addEventListener('change', function() {
+        const cityId = this.value;
+        console.log("Selected city id: " + cityId);
+        // Svuota il locationSelect
+        locationSelect.innerHTML = '<option value="">Seleziona una venue</option>';
 
-    urlParams.set('cityId', selectedCityId);
+        if (!cityId) return; // Se nessuna città è selezionata, esci
 
-    // Se stai anche modificando un concert, conserva l'id nel redirect
-    const concertIdInput = document.querySelector('[name="id"]');
-    if (concertIdInput && concertIdInput.value) {
-        urlParams.set('id', concertIdInput.value);
-    }
+        fetch(`/locations?id=${cityId}`)
+            .then(response => response.json())
+            .then(locations => {
+                console.log("Fetched locations:", locations);
+                locations.forEach(loc => {
+                    const option = document.createElement('option');
+                    option.value = loc.id;
+                    option.textContent = loc.name;
+                    locationSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Errore nel caricamento delle venue:', error);
+            });
+    });
 
-    // Ricarica la pagina con i nuovi parametri
-    window.location.href = '/reserved?' + urlParams.toString();
-});
+// document.getElementById('citySelector').addEventListener('change', function () {
+//     const selectedCityId = this.value;
+//     const urlParams = new URLSearchParams(window.location.search);
+
+//     urlParams.set('cityId', selectedCityId);
+
+//     // Se stai anche modificando un concert, conserva l'id nel redirect
+//     const concertIdInput = document.querySelector('[name="id"]');
+//     if (concertIdInput && concertIdInput.value) {
+//         urlParams.set('id', concertIdInput.value);
+//     }
+
+//     // Ricarica la pagina con i nuovi parametri
+//     window.location.href = '/reserved?' + urlParams.toString();
+// });
 
 concertForm.addEventListener("submit", event => {
     event.preventDefault();
