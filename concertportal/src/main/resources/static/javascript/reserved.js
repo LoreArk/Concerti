@@ -62,17 +62,17 @@ concertForm.addEventListener("submit", event => {
             genre: document.querySelector("input[name='genre']").value,
             date: document.querySelector("input[name='date']").value + "T" + document.querySelector("input[name='time']").value + ":00",
             location: {
-                id: document.querySelector("input[name='location.id']").value,  // id location
-                name: document.querySelector("input[name='location.name']").value,
-                address: document.querySelector("input[name='location.address']").value,
+                id: document.querySelector("select[name='locationSelect']").value, 
+                name: document.querySelector("select[name='locationSelect'] option:checked").textContent,
+                address: document.querySelector("select[name='locationSelect'] option:checked").textContent,
                 city: {
-                    id: document.querySelector("input[name='location.city.id']").value,  // id city
-                    name: document.querySelector("input[name='location.city.name']").value
+                    id: document.querySelector("select[name='citySelect']").value, 
+                    name: document.querySelector("select[name='citySelect'] option:checked").textContent 
                 },
-                region: {
-                    id: document.querySelector("input[name='location.region.id']").value,  // id region
-                    name: document.querySelector("input[name='location.region.name']").value
-                }
+                // region: {
+                //     id: document.querySelector("input[name='location.region.id']").value, 
+                //     name: document.querySelector("input[name='location.region.name']").value
+                // }
             }
         };
 
