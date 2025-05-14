@@ -258,14 +258,14 @@
                         <label for="orario">Scegli l'orario:</label>
                         <input name="time" type="time" class="form-control" id="orario" th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
                     </div>
-                    <!-- <div class="input-group mb-3">
+                    <div class="input-group mb-3">
                         <label class="input-group-text" for="poster">Locandina</label>
                         <input name="poster" type="file" class="form-control" id="poster">
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="artistPhoto">Foto Artista</label>
                         <input name="artistPhoto" type="file" class="form-control" id="artistPhoto">
-                    </div> -->
+                    </div>
                     <div class="col-md-2 d-grid">
                         <button type="submit" id="concertSubmit" class="btn btn-primary">Aggiungi</button>
                     </div>
