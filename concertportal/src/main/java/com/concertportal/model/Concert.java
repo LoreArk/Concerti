@@ -28,6 +28,7 @@ public class Concert {
     private String description;
     private String foto;
     private String poster;
+    private double price;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_location", referencedColumnName = "id")
