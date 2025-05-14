@@ -9,70 +9,132 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>
-<title>Index</title>
+<title>Log in</title>
 <link rel="stylesheet" th:href="@{/style.css}">
 <link rel="script" th:src="@{/script.js}">
 </link>
 </link>
-</head>
 <style>
-    
     .main-content {
-        position: relative;
-        z-index: 1;
-        padding: 20px;
-        margin-top: 100px;
-        margin-bottom: 100px;
-        width: 50vw;
-        margin: 100px auto 100px auto;
-        text-align: center;
-        color: #a1a1a1;
-        font-family: monospace;
-        font-size: 20px;
-        border-radius: 10px;
-        box-shadow: 10px 10px;
+        animation: slideIn 0.8s ease forwards;
+        max-width: 400px;
+        margin: 100px auto;
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        color: #fff;
     }
 
-    .main-content h5 {
-        margin-top: 20px;
-        margin-bottom: 20px;
+    @keyframes slideIn {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
-    .main-content table {
-        width: 100%;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .main-content input[type="text"],
-    .main-content input[type="password"] {
-        width: 300px;
-        padding: 10px;
-        margin: 10px 0;
-        margin-left: 5%;
+    .form-floating input {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #fff;
         border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-
     }
 
-    .main-content input[type="submit"] {
+    .form-floating label {
+        color: #ccc;
+    }
+
+    input:valid {
+        border-color: #3ff33f;
+    }
+
+    input:invalid {
+        border-color: #ff4e45;
+    }
+
+    /* BTN PERSONALIZZATO */
+    .btn-ripple {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        border-radius: 30px;
         background-color: #a50000;
-        border-color: #820000;
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
+        border: 1px solid #820000;
         color: white;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-        margin-top: 5%;
+        font-family: monospace;
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
     }
 
-    .main-content input[type="submit"]:hover {
+    .btn-ripple:hover {
         background-color: #820000;
         border-color: #6b0000;
+        box-shadow: 0 0 6px #ffb3b3;
+    }
+
+    .btn-ripple::before {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        background: rgba(255, 255, 255, 0.4);
+        pointer-events: none;
+        width: 200px;
+        height: 200px;
+        top: var(--y, 50%);
+        left: var(--x, 50%);
+        transform: translate(-50%, -50%) scale(0);
+        animation: rippleEffect 0.8s ease-out forwards;
+    }
+
+
+    /* Effetto onda animata */
+    .btn-ripple .ripple-animate {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: rippleEffect 0.8s ease-out forwards;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    @keyframes rippleEffect {
+        to {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    .error-message {
+        color: #ff4e45;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-bottom: 1rem;
     }
 </style>
+</head>
 
 <body>
     <a-waves>
@@ -82,7 +144,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd; padding: 3%;">
             <div class="container-fluid">
 
-                <div class="row"><a class="navbar-brand col-md-12" href="#"><img th:src="@{/2TICKET.png}" alt="Logo"
+                <div class="row"><a class="navbar-brand col-md-12" th:href="@{/}"><img th:src="@{/2TICKET.png}" alt="Logo"
                             width="160"> </a></div>
                 <div class="row" style="width: 45vw;">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -104,10 +166,7 @@
                                 <a th:href="@{/login}" class="nav-link">Area Amministratore</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Pricing</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                <a class="nav-link" th:href="@{/error}">Pricing</a>
                             </li>
                         </ul>
                     </div>
@@ -118,23 +177,30 @@
     <!-- HEADER -->
 
     <div class="main-content">
-        <h5 th:if="${error != null}" th:text="${error}" class="text-center text-danger"></h5>
-        <form action="/login" method="post">
-            <table>
-                <tr>
-                    <td>Email<input type="text" name="email" id="email" required></td>
-                </tr>
-                <tr>
-                    <td>Password<input type="password" name="password" id="password" required></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Accesso Area Riservata" class="btn btn-success">
-                    </td>
-                </tr>
-            </table>
+
+        <h2 class="text-center mb-4">Login Area Riservata</h2>
+
+        <p th:if="${error != null}" th:text="${error}" class="error-message">Errore di autenticazione</p>
+
+        <form action="/login" method="get">
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+                <label name="email">Email</label>
+            </div>
+            <div class="form-floating mb-3 form-group">
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <label name="password">Password</label>
+                <button type="button" class="toggle-password" onclick="togglePassword()">👁</button>
+            </div>
+
+            <button type="submit" class="btn btn-ripple btn-primary" value="Accedi">Accedi</button>
+
         </form>
     </div>
+    <!-- FORM END -->
+
+
     <div class="footer">
         <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
             <div class="container-fluid">
@@ -148,7 +214,7 @@
                         <a class="text-dark" href="#">chi siamo</a>
                     </div>
                     <div class="col-md-3 p-3">
-                        <a class="text-dark" href="#">chi siamo</a>
+                        <a class="text-dark" href="#">social</a>
                     </div>
                     <div class="col-md-3 p-3">
                         <a class="text-dark" href="#">cosa facciamo</a>
@@ -160,7 +226,42 @@
                 </div>
         </footer>
     </div>
-    </div>
+    <script>
+        // 👁 Toggle mostra/nascondi password
+        function togglePassword() {
+            const pw = document.getElementById("password");
+            pw.type = pw.type === "password" ? "text" : "password";
+        }
+
+        // 🌊 Ripple anche su hover
+        const button = document.querySelector(".btn-ripple");
+
+        function createRipple(x, y) {
+            const ripple = document.createElement("span");
+            ripple.classList.add("ripple-animate");
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            button.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 800); // rimuove il ripple dopo l'animazione
+        }
+
+        // Su hover
+        button.addEventListener("mouseenter", (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            createRipple(x, y);
+        });
+
+        // Su click (facoltativo: puoi anche mantenerlo)
+        button.addEventListener("click", (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            createRipple(x, y);
+        });
+
+    </script>
     <script th:src="@{/script.js}"></script>
 </body>
 
