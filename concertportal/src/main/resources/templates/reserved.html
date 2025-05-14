@@ -131,198 +131,191 @@
             <div class="form p-4 w-75">
                 <h2 class="text-center mb-4">Gestione Concerti</h2>
                 <form id="concertForm" class="row g-4">
+                    <input type="hidden" name="id" th:value="${concertForm.id}">
+                    <input type="hidden" name="location.id" th:value="${concertForm.location.id}">
+                    <input type="hidden" name="location.city.id" th:value="${concertForm.location.city.id}">
+                    <input type="hidden" name="location.region.id" th:value="${concertForm.location.region.id}">
 
-                    <!-- Hidden inputs -->
-                    =======
-                    <div class="d-flex justify-content-center align-items-center"
-                        style="min-height: 100vh; padding-top: 60px; padding-bottom: 60px;">
-                        <div class="form p-4 shadow rounded w-75">
-                            <h2 class="text-center mb-4">Gestione Concerti</h2>
-                            <!--Select che cicla sulle cities (array cities)
-                    -Senza questa opzione, il secondo select non si attiva
-                    -listener sul cambiamento
-                        -attiva il secondo select
-                    -listener sul secondo select
-                        -riempio i campi derivati
-                            -NB non mostrare la regione
-                -->
-                            <!--Select che mostra tutte le location, rendendo visibili solo quelle che hanno come city l'opzione scelta al select precedente
-
-                -->
-                            <form id="concertForm" class="row g-3">
-                                >>>>>>> 3c13e2f43074f08b0f1f977664455e1f22fa045c
-                                <input type="hidden" name="id" th:value="${concertForm.id}">
-                                <input type="hidden" name="location.id" th:value="${concertForm.location.id}">
-                                <input type="hidden" name="location.city.id" th:value="${concertForm.location.city.id}">
-                                <input type="hidden" name="location.region.id"
-                                    th:value="${concertForm.location.region.id}">
-
-                                <!-- Artist & Concert Info -->
-                                <div class="col-12 col-md-4">
-                                    <input name="artist" type="text" class="form-control"
-                                        th:value="${concertForm.artist}" placeholder="Artista" id="artist" required>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <input name="concertName" type="text" class="form-control"
-                                        th:value="${concertForm.concertName}" placeholder="Titolo del concerto"
-                                        id="concert_name" required>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <input name="genre" type="text" class="form-control" th:value="${concertForm.genre}"
-                                        placeholder="Genere musicale" id="genre" required>
-                                </div>
-
-                                <!-- Location Info -->
-                                <div class="col-12 col-md-6">
-                                    <select name="citySelect" id="citySelect" onchange="cityChosen()">
-                                        <option value="" hidden>Scegli la città</option>
-                                        <option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.id}">
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <select name="locationSelect" id="locationSelect" onchange="locationChosen()"
-                                        disabled>
-                                        <option value="" hidden>Scegli la location</option>
-                                        <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
-                                        <option th:each="location : ${locations}" th:text="${location.name}"
-                                            th:value="${location.id}"></option>
-                                    </select>
-                                </div>
-
-                                <!-- Date & Time -->
-                                <div class="col-12 col-md-3">
-                                    <label for="date" class="form-label">Data</label>
-                                    <input name="date" type="date" class="form-control"
-                                        th:value="${#temporals.format(concertForm.date, 'yyyy-MM-dd')}" id="date"
-                                        required>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <label for="orario" class="form-label">Orario</label>
-                                    <input name="time" type="time" class="form-control" id="orario"
-                                        th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
-                                </div>
-
-                                <!-- File Inputs -->
-                                <div class="col-12 col-md-6">
-                                    <label class="form-label" for="poster">Locandina</label>
-                                    <input name="poster" type="file" class="form-control" id="poster">
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <label class="form-label" for="artistPhoto">Foto Artista</label>
-                                    <input name="artistPhoto" type="file" class="form-control" id="artistPhoto">
-                                </div>
-
-                                <!-- Submit Button -->
-                                <div class="col-12 col-md-3 d-grid">
-                                    <button type="submit" id="concertSubmit" class="btn btn-primary">Aggiungi</button>
-                                </div>
-                            </form>
-
-                            <!-- Concert list output -->
-                            <div class="mt-4" id="concertList" style="animation: slideIn 0.8s ease-in-out;">
-                                <!-- Concerti aggiunti appariranno qui -->
-                            </div>
-                        </div>
+                    <!-- Artist & Concert Info -->
+                    <div class="col-12 col-md-4">
+                        <input name="artist" type="text" class="form-control" th:value="${concertForm.artist}"
+                            placeholder="Artista" id="artist" required>
                     </div>
+                    <div class="col-12 col-md-4">
+                        <input name="concertName" type="text" class="form-control" th:value="${concertForm.concertName}"
+                            placeholder="Titolo del concerto" id="concert_name" required>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <input name="genre" type="text" class="form-control" th:value="${concertForm.genre}"
+                            placeholder="Genere musicale" id="genre" required>
+                    </div>
+
+                    <!-- Location Info -->
+                    <div class="col-12 col-md-6">
+                        <select name="citySelect" id="citySelect" onchange="cityChosen()">
+                            <option value="" hidden>Scegli la città</option>
+                            <option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.id}"
+                                th:selected="${city.id == concertForm.location.city.id ? true : false}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <select name="locationSelect" id="locationSelect" onchange="locationChosen()"
+                            th:disabled="${concertForm.id == null}">
+                            <option value="" hidden>Scegli la location</option>
+                            <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
+                            <option th:each="location : ${locations}" th:text="${location.name}"
+                                th:value="${location.id}"
+                                th:selected="${location.id == concertForm.location.id ? true : false}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Date & Time -->
+                    <div class="col-12 col-md-3">
+                        <label for="date" class="form-label">Data</label>
+                        <input name="date" type="date" class="form-control"
+                            th:value="${#temporals.format(concertForm.date, 'yyyy-MM-dd')}" id="date" required>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="orario" class="form-label">Orario</label>
+                        <input name="time" type="time" class="form-control" id="orario"
+                            th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
+                    </div>
+
+
+                    <!--Description Input-->
+                    <div class="col-12 col-md-4">
+                        <textarea id="description" name="descriprion" rows="6" cols="70"
+                            placeholder="Descrizione concerto" class="form-control" th:text="${concertForm.description}"></textarea>
+                    </div>
+
+                    <!--Price input-->
+                    <div class="col-12 col-md-4">                    
+                    <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Prezzo in euro" th:value="${concertForm.price}">
+                    </div>
+
+
+                    <!-- File Inputs -->
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="poster">Locandina</label>
+                        <input name="poster" type="file" class="form-control" id="poster">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="artistPhoto">Foto Artista</label>
+                        <input name="artistPhoto" type="file" class="form-control" id="artistPhoto">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="col-12 col-md-3 d-grid">
+                        <button type="submit" id="concertSubmit" class="btn btn-primary">Aggiungi</button>
+                    </div>
+                </form>
+
+                <!-- Concert list output -->
+                <div class="mt-4" id="concertList" style="animation: slideIn 0.8s ease-in-out;">
+                    <!-- Concerti aggiunti appariranno qui -->
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="row mb-5">
-                <div class="d-flex justify-content-center align-items-center w-100">
-                    <div class="form p-4 w-75">
+    <div class="row mb-5">
+        <div class="d-flex justify-content-center align-items-center w-100">
+            <div class="form p-4 w-75">
 
-                        <!-- Table view for desktop -->
-                        <div class="table-responsive d-none d-sm-block">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Concerto</th>
-                                        <th>Artista</th>
-                                        <th>Data</th>
-                                        <th>Location</th>
-                                        <th>Genere</th>
-                                        <th>Azioni</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="concert, iterStat : ${concerts}">
-                                        <td th:text="${iterStat.index + 1}"></td>
-                                        <td th:text="${concert.concertName}"></td>
-                                        <td th:text="${concert.artist}"></td>
-                                        <td th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}">
-                                        </td>
-                                        <td th:text="|${concert.location.city.name}, ${concert.location.name}|"></td>
-                                        <td th:text="${concert.genre}"></td>
-                                        <td>
-                                            <a th:href="@{/reserved(id=${concert.id}, cityId=${concert.location.city.id})}"
-                                                class="btn btn-light mb-1">Modifica</a>
-                                            <button class="btn btn-sm btn-outline-danger delete"
-                                                th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
-                                                Elimina
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- Card view for mobile -->
-                        <div class="d-block d-sm-none">
-                            <div th:each="concert, iterStat : ${concerts}" class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title" th:text="${concert.concertName}"></h5>
-                                    <h6 class="card-subtitle mb-2 text-muted" th:text="${concert.artist}"></h6>
-                                    <p class="card-text mb-1"><strong>Data:</strong> <span
-                                            th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}"></span>
-                                    </p>
-                                    <p class="card-text mb-1"><strong>Location:</strong> <span
-                                            th:text="|${concert.location.city.name}, ${concert.location.name}|"></span>
-                                    </p>
-                                    <p class="card-text mb-3"><strong>Genere:</strong> <span
-                                            th:text="${concert.genre}"></span>
-                                    </p>
+                <!-- Table view for desktop -->
+                <div class="table-responsive d-none d-sm-block">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Concerto</th>
+                                <th>Artista</th>
+                                <th>Data</th>
+                                <th>Location</th>
+                                <th>Genere</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="concert, iterStat : ${concerts}">
+                                <td th:text="${iterStat.index + 1}"></td>
+                                <td th:text="${concert.concertName}"></td>
+                                <td th:text="${concert.artist}"></td>
+                                <td th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}">
+                                </td>
+                                <td th:text="|${concert.location.city.name}, ${concert.location.name}|"></td>
+                                <td th:text="${concert.genre}"></td>
+                                <td>
                                     <a th:href="@{/reserved(id=${concert.id}, cityId=${concert.location.city.id})}"
-                                        class="btn btn-sm btn-light">Modifica</a>
+                                        class="btn btn-light mb-1">Modifica</a>
                                     <button class="btn btn-sm btn-outline-danger delete"
                                         th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
                                         Elimina
                                     </button>
-                                </div>
-                            </div>
-                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
+                <!-- Card view for mobile -->
+                <div class="d-block d-sm-none">
+                    <div th:each="concert, iterStat : ${concerts}" class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${concert.concertName}"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${concert.artist}"></h6>
+                            <p class="card-text mb-1"><strong>Data:</strong> <span
+                                    th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}"></span>
+                            </p>
+                            <p class="card-text mb-1"><strong>Location:</strong> <span
+                                    th:text="|${concert.location.city.name}, ${concert.location.name}|"></span>
+                            </p>
+                            <p class="card-text mb-3"><strong>Genere:</strong> <span th:text="${concert.genre}"></span>
+                            </p>
+                            <a th:href="@{/reserved(id=${concert.id}, cityId=${concert.location.city.id})}"
+                                class="btn btn-sm btn-light">Modifica</a>
+                            <button class="btn btn-sm btn-outline-danger delete"
+                                th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
+                                Elimina
+                            </button>
+                        </div>
                     </div>
                 </div>
+
             </div>
-            <div class="footer">
-                <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
-                    <div class="container-fluid">
-                        <div class="row justify-content-center padding: 3%">
-                            <div class="col-md-3 p-3">
-                                <a class="text-dark" href="#"><img th:src="@{/2TICKET.png}" alt="Logo" width="120"></a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 p-3">
-                                <a href="#">chi siamo</a>
-                            </div>
-                            <div class="col-md-3 p-3">
-                                <a href="#">social</a>
-                            </div>
-                            <div class="col-md-3 p-3">
-                                <a href="#">cosa facciamo</a>
-                            </div>
-                            <div class="col-md-3 p-3">
-                                © 2025 Copyright:
-                                <a href="#">Concerti Italia</a>
-                            </div>
-                        </div>
-                </footer>
-            </div>
-            <script th:src="@{/script.js}"></script>
+        </div>
+    </div>
+    <div class="footer">
+        <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
+            <div class="container-fluid">
+                <div class="row justify-content-center padding: 3%">
+                    <div class="col-md-3 p-3">
+                        <a class="text-dark" href="#"><img th:src="@{/2TICKET.png}" alt="Logo" width="120"></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 p-3">
+                        <a href="#">chi siamo</a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a href="#">social</a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a href="#">cosa facciamo</a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        © 2025 Copyright:
+                        <a href="#">Concerti Italia</a>
+                    </div>
+                </div>
+        </footer>
+    </div>
+    <script th:src="@{/script.js}"></script>
+    <script th:src="@{/javascript/reserved.js}"></script>
 </body>
-<!--Script elimmina-->
+<!--Script elimina-->
 <script>
     document.querySelectorAll(".delete").forEach(function (button) {
         button.addEventListener("click", function () {
@@ -358,6 +351,13 @@
         document.getElementById('concertList').appendChild(card);
         this.reset();
     });
+    function cityChosen() {
+        const locationSelect = document.getElementById("locationSelect");
+        locationSelect.disabled = false;
+        locationSelect.innerHTML = "<option value='' hidden>Scegli la location</option> <option th:each='location : ${locations}' th:text='${location.name}' th:value='${location.id}'></option>";
+        //abilitare le voci da qui?
+    }
+
 </script>
-    
+
 </html>
