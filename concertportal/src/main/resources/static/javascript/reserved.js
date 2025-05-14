@@ -2,8 +2,11 @@ const submitBtn = document.getElementById("concertSubmit");
 const concertForm = document.getElementById("concertForm");
 const citySelect = document.getElementById('citySelect');
 const locationSelect = document.getElementById('locationSelect');
+const posterImage = document.getElementById('poster');
+const artistiImage = document.getElementById('artistPhoto');
 
-let uploadedImage = null;
+let uploadedPosterImg = null;
+let uploadedArtistImg = null;
 
 const formCheck = () => {
     return true;
@@ -32,23 +35,45 @@ citySelect.addEventListener('change', function() {
             .catch(error => {
                 console.error('Errore nel caricamento delle venue:', error);
             });
-    });
+});
 
-// document.getElementById('citySelector').addEventListener('change', function () {
-//     const selectedCityId = this.value;
-//     const urlParams = new URLSearchParams(window.location.search);
+posterImage.addEventListener("change", function() {
+    const maxSize = 1 * 1024 * 1024;
+    const file = this.files[0];
+    if(file && file.size <= maxSize) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            uploadedPosterImg = e.target.result;
+            posterImage.src = uploadedPosterImg;
+            //posterImage.value = "";
+        };
+        reader.readAsDataURL(file);
+        console.log("File uploaded");
+    } else {
+        this.style.border = "1px solid red";
+        console.log("File troppo grande o qualcos'altro");
+    }
+});
 
-//     urlParams.set('cityId', selectedCityId);
+artistiImage.addEventListener("change", function() {
+    const maxSize = 1 * 1024 * 1024;
+    const file = this.files[0];
+    if(file && file.size <= maxSize) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            uploadedArtistImg = e.target.result;
+            artistiImage.src = uploadedArtistImg;
+            //posterImage.value = "";
+        };
+        reader.readAsDataURL(file);
+        console.log("File uploaded");
+        this.style.border = "1px solid white";
+    } else {
+        this.style.border = "1px solid red";
+        console.log("File troppo grande o qualcos'altro");
+    }
+});
 
-//     // Se stai anche modificando un concert, conserva l'id nel redirect
-//     const concertIdInput = document.querySelector('[name="id"]');
-//     if (concertIdInput && concertIdInput.value) {
-//         urlParams.set('id', concertIdInput.value);
-//     }
-
-//     // Ricarica la pagina con i nuovi parametri
-//     window.location.href = '/reserved?' + urlParams.toString();
-// });
 
 concertForm.addEventListener("submit", event => {
     event.preventDefault();
@@ -61,6 +86,9 @@ concertForm.addEventListener("submit", event => {
             artist: document.querySelector("input[name='artist']").value,
             genre: document.querySelector("input[name='genre']").value,
             date: document.querySelector("input[name='date']").value + "T" + document.querySelector("input[name='time']").value + ":00",
+            description: document.querySelector("textarea[name='description']").value,
+            price: document.querySelector("input[name='price']").value,
+            foto: uploadedArtistImg,
             location: {
                 id: document.querySelector("select[name='locationSelect']").value, 
                 name: document.querySelector("select[name='locationSelect'] option:checked").textContent,
@@ -68,22 +96,11 @@ concertForm.addEventListener("submit", event => {
                 city: {
                     id: document.querySelector("select[name='citySelect']").value, 
                     name: document.querySelector("select[name='citySelect'] option:checked").textContent 
-                },
-                // region: {
-                //     id: document.querySelector("input[name='location.region.id']").value, 
-                //     name: document.querySelector("input[name='location.region.name']").value
-                // }
+                }
             }
         };
 
         console.log("Form Data:", formData); 
-
-        // const dateField = formData.date;
-        // const timeField = formData.time;
-
-        // if (dateField && timeField) {
-        //     formData.date = `${dateField}T${timeField}:00`;
-        // }
 
         fetch("/reserved",
             {

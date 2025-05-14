@@ -33,6 +33,7 @@ public class IndexController {
                 (concerto.getLocation().getCity() != null ? concerto.getLocation().getCity().getName() : "null"));
             
             System.out.println("Address: " + concerto.getLocation().getAddress());
+            System.out.println("Prezzo: " + concerto.getPrice());
             System.out.println("---");
             
         });
