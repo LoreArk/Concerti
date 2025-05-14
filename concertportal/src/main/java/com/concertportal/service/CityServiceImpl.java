@@ -19,4 +19,9 @@ public class CityServiceImpl implements CityService{
         return (List<City>) cityRepository.findAll();
     }
 
+    @Override
+    public City getCityById(Integer id) {
+        return (City) cityRepository.findById(id).orElse(null);
+    }
+
 }
