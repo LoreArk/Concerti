@@ -86,7 +86,8 @@ concertForm.addEventListener("submit", event => {
             artist: document.querySelector("input[name='artist']").value,
             genre: document.querySelector("input[name='genre']").value,
             date: document.querySelector("input[name='date']").value + "T" + document.querySelector("input[name='time']").value + ":00",
-            poster: uploadedPosterImg,
+            description: document.querySelector("textarea[name='description']").value,
+            price: document.querySelector("input[name='price']").value,
             foto: uploadedArtistImg,
             location: {
                 id: document.querySelector("select[name='locationSelect']").value, 
