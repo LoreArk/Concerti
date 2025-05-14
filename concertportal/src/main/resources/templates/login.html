@@ -182,18 +182,17 @@
 
         <p th:if="${error != null}" th:text="${error}" class="error-message">Errore di autenticazione</p>
 
-        <form action="/login" method="get">
+        <form action="/login" method="post">
 
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+                <input name="email" type="email" class="form-control" id="email" placeholder="email@example.com" required>
                 <label name="email">Email</label>
             </div>
             <div class="form-floating mb-3 form-group">
-                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
                 <label name="password">Password</label>
                 <button type="button" class="toggle-password" onclick="togglePassword()">👁</button>
             </div>
-
             <button type="submit" class="btn btn-ripple btn-primary" value="Accedi">Accedi</button>
 
         </form>
