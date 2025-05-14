@@ -187,12 +187,12 @@
                     <!--Description Input-->
                     <div class="col-12 col-md-4">
                         <textarea id="description" name="descriprion" rows="6" cols="70"
-                            placeholder="Descrizione concerto" class="form-control"></textarea>
+                            placeholder="Descrizione concerto" class="form-control" th:value="${concertForm.description}"></textarea>
                     </div>
 
                     <!--Price input-->
                     <div class="col-12 col-md-4">                    
-                    <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Prezzo in euro">
+                    <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Prezzo in euro" th:value="${concertForm.price}">
                     </div>
 
 
