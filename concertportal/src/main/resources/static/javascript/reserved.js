@@ -96,16 +96,12 @@ artistImage.addEventListener("change", function() {
     }
 });
 
-/*
- * Gestisce l'invio del form
- */
 concertForm.addEventListener("submit", event => {
     event.preventDefault();
-    console.log("Invio form in corso");
-    
+    console.log("SUBMIT");
     if (formCheck()) {
-        // Prepara i dati del form
-        const formData = {
+        
+          const formData = {
             id: document.querySelector("input[name='id']").value,
             concertName: document.querySelector("input[name='concertName']").value,
             artist: document.querySelector("input[name='artist']").value,
@@ -114,44 +110,38 @@ concertForm.addEventListener("submit", event => {
             description: document.querySelector("textarea[name='description']").value,
             price: document.querySelector("input[name='price']").value,
             foto: uploadedArtistImg,
-            poster: uploadedPosterImg, // Aggiunto il poster che mancava nell'oggetto
             location: {
                 id: document.querySelector("select[name='locationSelect']").value, 
-                name: document.querySelector("select[name='locationSelect'] option:checked")?.textContent || "",
-                address: document.querySelector("select[name='locationSelect'] option:checked")?.textContent || "",
+                name: document.querySelector("select[name='locationSelect'] option:checked").textContent,
+                address: document.querySelector("select[name='locationSelect'] option:checked").textContent,
                 city: {
                     id: document.querySelector("select[name='citySelect']").value, 
-                    name: document.querySelector("select[name='citySelect'] option:checked")?.textContent || ""
+                    name: document.querySelector("select[name='citySelect'] option:checked").textContent 
                 }
             }
         };
 
-        console.log("Dati form preparati");
+        console.log("Form Data:", formData); 
 
-        // Invia i dati al server
-        fetch("/reserved", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData)
-        })
+        fetch("/reserved",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            }
+        )
         .then(response => {
             return response.text().then(text => {
-                console.log('Risposta server:', text);
-                if (response.status === 200 || text === "Operazione Eseguita") {
-                    alert("Operazione Eseguita" + text);
-                    redirect = "/reserved";
-                } else {
-                    alert("Errore durante il salvataggio: " + text);
+                 console.log('Response:', text);
+                if (response.status === 200 && text === "Operazione Eseguita") {
+                    window.location.href = "/reserved";
                 }
-            });
+            })
         })
-        .catch(error => {
-            console.error("Errore durante l'invio:", error);
-            alert("Si è verificato un errore durante l'invio del form");
-        });
+        .catch(error => console.log(error))
+
     }
 });
-
 
 // // Aggiungi un listener per i bottoni "Modifica"
 // document.querySelectorAll(".edit").forEach(button => {
