@@ -183,10 +183,11 @@
             <div class="form p-4 w-75">
                 <h2 class="text-center mb-4">Gestione Concerti</h2>
                 <form id="concertForm" class="row g-4">
-                    <input type="hidden" name="id">
-                    <input type="hidden" name="location.id">
-                    <input type="hidden" name="location.city.id">
-                    <input type="hidden" name="location.region.id">
+                    <input type="hidden" name="id" th:value="${concertForm.id}">
+                    <input type="hidden" name="location.id" th:value="${concertForm.location.id}">
+                    <input type="hidden" name="location.city.id" th:value="${concertForm.location.city.id}">
+                    <input type="hidden" name="location.region.id" th:value="${concertForm.location.region.id}">
+
 
                     <div class="col-12 col-md-4">
                         <input name="artist" type="text" class="form-control" th:value="${concertForm.artist}" placeholder="Artista" id="artist"
@@ -202,7 +203,7 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-                         <select name="citySelect" id="citySelect" class="form-select" onchange="cityChosen()">
+                         <select name="citySelect" id="citySelect" class="form-select" onchange="cityChosen()" required>
                             <option value="" hidden>Scegli la città</option>
                             <option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.id}"
                                 th:selected="${city.id == concertForm.location.city.id ? true : false}">
@@ -213,7 +214,7 @@
                     <div class="col-12 col-md-6">
                         
                             <select name="locationSelect" id="locationSelect" class="form-select" onchange="locationChosen()"
-                            th:disabled="${concertForm.id == null}">
+                            th:disabled="${concertForm.id == null}" required>
                             <option value="" hidden>Seleziona una venue</option>
                             <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
                             <option th:each="location : ${locations}" th:text="${location.name}"
@@ -239,19 +240,20 @@
                             <div class="col-6 col-md-12">
                                 <label for="orario" class="form-label">Orario</label>
                                 <input name="time" type="time" class="form-control" id="orario"
-                                    th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
+                                    th:value="${#temporals.format(concertForm.date, 'HH:mm')}" required/>
                             </div>
                         </div>
                     </div>
                     <!--PRICE-->
                     <div class="col-12 col-md-4 order-md-3 order-1">
                         <input type="number" id="price" name="price" th:value="${concertForm.price}" step="0.10" min="0" class="form-control"
-                            placeholder="Prezzo in euro">
+                            placeholder="Prezzo in euro" required>
                     </div>
 
                     <div class="col-12 col-md-6 order-md-2 order-2">
                         <label class="form-label" for="poster">Locandina</label>
-                        <input name="poster" type="file" class="form-control" id="poster" accept="image/*">
+                        <input name="poster" type="file" class="form-control" id="poster" accept="image/*"
+                            th:selected="${concertForm.id == null ? true : false}">
                     </div>
 
                     <div class="col-12 col-md-6 order-md-4 order-3">
