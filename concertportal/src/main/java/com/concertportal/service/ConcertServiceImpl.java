@@ -40,7 +40,19 @@ public class ConcertServiceImpl implements ConcertService {
         if(concert.getId() != null) {
             System.out.println("MODIFY, ID: " + concert.getId());
             Concert concertMod = concertRepository.findById(concert.getId()).get();
-            BeanUtils.copyProperties(concert, concertMod, "id");
+
+            BeanUtils.copyProperties(concert, concertMod, "id", "foto", "poster");
+
+            if (concert.getFoto() != null && !concert.getFoto().isEmpty()) {
+                concertMod.setFoto(concert.getFoto());
+            }
+
+            // Gestisci locandina (poster)
+            if (concert.getPoster() != null && !concert.getPoster().isEmpty()) {
+                concertMod.setPoster(concert.getPoster());
+            }
+
+
             concertRepository.save(concertMod);
             return ResponseEntity.ok("Operation completed");
         }

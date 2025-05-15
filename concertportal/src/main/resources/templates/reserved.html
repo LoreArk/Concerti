@@ -203,7 +203,7 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <select name="citySelect" id="citySelect" class="form-select" onchange="cityChosen()" required>
+                         <select name="citySelect" id="citySelect" class="form-select"  required>
                             <option value="" hidden>Scegli la città</option>
                             <option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.id}"
                                 th:selected="${city.id == concertForm.location.city.id ? true : false}">
@@ -212,9 +212,9 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-
-                        <select name="locationSelect" id="locationSelect" class="form-select"
-                            onchange="locationChosen()" th:disabled="${concertForm.id == null}" required>
+                        
+                            <select name="locationSelect" id="locationSelect" class="form-select" 
+                            th:disabled="${concertForm.id == null}" required>
                             <option value="" hidden>Seleziona una venue</option>
                             <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
                             <option th:each="location : ${locations}" th:text="${location.name}"
@@ -226,8 +226,8 @@
 
                     <!-- DESCRIPTION -->
                     <div class="col-12 col-md-6">
-                        <textarea id="description" name="description" th:value="${concertForm.description}" rows="6"
-                            class="form-control" placeholder="Descrizione concerto"></textarea>
+                        <textarea id="description" name="description" th:text="${concertForm.description}" minlength="40" maxlength="500" rows="6" class="form-control"
+                            placeholder="Descrizione concerto"></textarea>
                     </div>
                     <!--DATE-->
                     <div class="col-12 col-md-6">
@@ -246,23 +246,25 @@
                     </div>
                     <!--PRICE-->
                     <div class="col-12 col-md-4 order-md-3 order-1">
-                        <input type="number" id="price" name="price" th:value="${concertForm.price}" step="0.10" min="0"
-                            class="form-control" placeholder="Prezzo in euro" required>
+                        <input type="number" id="price" name="price" th:value="${concertForm.price}" step="0.01" min="0" class="form-control"
+                            placeholder="Prezzo in euro" required>
                     </div>
 
                     <div class="col-12 col-md-6 order-md-2 order-2">
                         <label class="form-label" for="poster">Locandina</label>
                         <input name="poster" type="file" class="form-control" id="poster" accept="image/*"
-                            th:selected="${concertForm.id == null ? true : false}">
+                             th:attr="required=${concertForm.id == null}">
                     </div>
 
                     <div class="col-12 col-md-6 order-md-4 order-3">
                         <label class="form-label" for="artistPhoto">Foto Artista</label>
-                        <input name="artistPhoto" type="file" class="form-control" id="artistPhoto" accept="image/*">
+                        <input name="artistPhoto" type="file" class="form-control" id="artistPhoto" accept="image/*"
+                             th:attr="required=${concertForm.id == null}">
                     </div>
 
                     <div class="col-12 col-md-3 d-grid order-5">
-                        <button type="submit" id="concertSubmit" class="btn btn-primary">Aggiungi</button>
+                        <button type="submit" id="concertSubmit" class="btn btn-primary"
+                            th:text="${concertForm.id == null} ? 'Aggiungi' : 'Modifica'">Aggiungi</button>
                     </div>
                 </form>
 

@@ -101,6 +101,17 @@ concertForm.addEventListener("submit", event => {
     console.log("SUBMIT");
     if (formCheck()) {
         
+        const id = document.querySelector("input[name='id']").value;
+        const artist = document.querySelector("input[name='artist']").value;
+
+        const confirmMessage = id
+            ? `Confermi la modifica a ${artist}?`
+            : "Confermi l'aggiunta dell'evento?";
+
+        if (!confirm(confirmMessage)) {
+            return; // L'utente ha annullato l'invio
+        }
+
           const formData = {
             id: document.querySelector("input[name='id']").value,
             concertName: document.querySelector("input[name='concertName']").value,
