@@ -211,9 +211,16 @@
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <select name="locationSelect" id="locationSelect" class="form-select" disabled>
+                        
+                            <select name="locationSelect" id="locationSelect" class="form-select" onchange="locationChosen()"
+                            th:disabled="${concertForm.id == null}">
                             <option value="" hidden>Seleziona una venue</option>
-                        </select>
+                            <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
+                            <option th:each="location : ${locations}" th:text="${location.name}"
+                                th:value="${location.id}"
+                                th:selected="${location.id == concertForm.location.id ? true : false}">
+                            </option>
+                            </select>
                     </div>
 
                     <!-- Gruppo descrizione con data e orario affiancati su desktop -->
@@ -221,7 +228,6 @@
                         <textarea id="description" name="description" th:value="${concertForm.description}" rows="6" class="form-control"
                             placeholder="Descrizione concerto"></textarea>
                     </div>
-
                     <div class="col-12 col-md-6">
                         <div class="row g-3">
                             <div class="col-6 col-md-12">
