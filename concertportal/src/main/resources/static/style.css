@@ -31,6 +31,19 @@ a:visited {
     width: 100vw;
 }
 
+.footer a {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+.social-icon {
+    max-width: 30px;
+    height: auto;
+  }
+  
 .main-content {
     margin-top: 5%;
     margin-bottom: 5%;

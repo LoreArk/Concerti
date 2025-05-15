@@ -150,10 +150,11 @@
   }
 
   .carousel-track {
-  display: flex;
-  animation: scroll-left 10s ease-in-out infinite;
-  transition: transform 0.5s ease-in; /* Transizione graduale */
-}
+    display: flex;
+    animation: scroll-left 10s ease-in-out infinite;
+    transition: transform 0.5s ease-in;
+    /* Transizione graduale */
+  }
 
   .carousel-slide {
     position: relative;
@@ -439,31 +440,39 @@
         </div>
       </div>
     </div>
-    
+
     <!-- FOOTER -->
     <div class="footer">
       <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
         <div class="container-fluid">
           <div class="row justify-content-center padding: 3%">
             <div class="col-md-3 p-3">
-              <a class="text-dark" href="#"><img th:src="@{/2TICKET.png}" alt="Logo" width="120"></a>
+              <a class="text-dark" href="#"><img th:src="@{/2TICKET.png}" alt="Logo" style="width:120px;"></a>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-3 p-3">
-              <a href="#">chi siamo</a>
-            </div>
-            <div class="col-md-3 p-3">
-              <a href="#">social</a>
-            </div>
-            <div class="col-md-3 p-3">
-              <a href="#">cosa facciamo</a>
-            </div>
-            <div class="col-md-3 p-3">
-              © 2025 Copyright:
-              <a href="#">Concerti Italia</a>
+          <div class="container text-center">
+            <div class="row mt-5">
+              <div class="col">
+                <a href="#">chi siamo</a>
+              </div>
+              <div class="col">
+                <a href="#">cosa facciamo</a>
+              </div>
+              <div class="col">
+                © 2025 Copyright:
+                <a href="#">Concerti Italia</a>
+              </div>
             </div>
           </div>
+          <div class="container text-center">
+            <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap my-5">
+              <a href="#"><img src="/images/tiktok.png" alt="tiktok" class="img-fluid social-icon"></a>
+              <a href="#"><img src="/images/insta.png" alt="instagram" class="img-fluid social-icon"></a>
+              <a href="#"><img src="/images/facebook.png" alt="facebook" class="img-fluid social-icon"></a>
+            </div>
+          </div>
+          
+        </div>
       </footer>
     </div>
   </div>
