@@ -166,7 +166,7 @@
                                     <a class="nav-link" th:href="@{/login}">Area Amministratore</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" th:href="@{/modify}">Modifica</a>
+                                    <a class="nav-link" th:href="@{/error}">Pricing</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/reserved/logout}"> Logout</a>
@@ -204,8 +204,27 @@
                     <div class="col-12 col-md-6">
                         <select name="citySelect" id="citySelect" class="form-select">
                             <option value="" hidden>Scegli la città</option>
-                            <option value="1">Roma</option>
-                            <option value="2">Milano</option>
+                            <option value="12">Ancona</option>
+                            <option value="2">Aosta</option>
+                            <option value="17">Bari</option>
+                            <option value="9">Bologna</option>
+                            <option value="5">Bolzano</option>
+                            <option value="21">Cagliari</option>
+                            <option value="15">Campobasso</option>
+                            <option value="19">Catanzaro</option>
+                            <option value="10">Firenze</option>
+                            <option value="8">Genova</option>
+                            <option value="14">L'Aquila</option>
+                            <option value="3">Milano</option>
+                            <option value="16">Napoli</option>
+                            <option value="20">Palermo</option>
+                            <option value="11">Perugia</option>
+                            <option value="18">Potenza</option>
+                            <option value="13">Roma</option>
+                            <option value="1">Torino</option>
+                            <option value="4">Trento</option>
+                            <option value="7">Trieste</option>
+                            <option value="6">Venezia</option>
                         </select>
                     </div>
 
@@ -235,7 +254,7 @@
                     </div>
 
                     <div class="col-12 col-md-4 order-md-3 order-1">
-                        <input type="number" id="price" name="price" step="1.00" min="0" class="form-control"
+                        <input type="number" id="price" name="price" step="0.10" min="0" class="form-control"
                             placeholder="Prezzo in euro">
                     </div>
 
@@ -269,25 +288,34 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Concerto</th>
-                                <th>Artista</th>
-                                <th>Data</th>
-                                <th>Location</th>
-                                <th>Genere</th>
-                                <th>Azioni</th>
+                                <th style="text-align: center;">Concerto</th>
+                                <th style="text-align: center;">Artista</th>
+                                <th style="text-align: center;">Data</th>
+                                <th style="text-align: center;">Location</th>
+                                <th style="text-align: center;">Genere</th>
+                                <th style="text-align: center;">Prezzo</th>
+                                <th style="text-align: center;">Azioni</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="concert, iterStat : ${concerts}">
                                 <td th:text="${iterStat.index + 1}"></td>
-                                <td th:text="${concert.concertName}"></td>
-                                <td th:text="${concert.artist}"></td>
-                                <td th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}">
+                                <td th:text="${concert.concertName}" style="border-left: 1px solid #d7d7d7bd;"></td>
+                                <td th:text="${concert.artist}" style="border-left: 1px solid #d7d7d7bd;"></td>
+                                <td th:text="${#temporals.format(concert.date, 'dd/MM/yyyy ''alle'' HH:mm')}" style="border-left: 1px solid #d7d7d7bd;">
                                 </td>
-                                <td th:text="|${concert.location.city.name}, ${concert.location.name}|"></td>
-                                <td th:text="${concert.genre}"></td>
-                                <td>
-                                    <a th:href="@{/modify/{id}(id=${concert.id})}" class="btn btn-light mb-1">Modifica</a>
+                                <td th:text="|${concert.location.city.name}, ${concert.location.name}|" style="border-left: 1px solid #d7d7d7bd;"></td>
+                                <td th:text="${concert.genre}" style="border-left: 1px solid #d7d7d7bd;"></td>
+                                <td th:text="${concert.price}" style="border-left: 1px solid #d7d7d7bd;"></td>
+                                <td  style="border-left: 1px solid #d7d7d7bd;">
+                                    <a class="btn btn-light mb-1 edit" th:data-id="${concert.id}"
+                                        th:data-artist="${concert.artist}" th:data-concert-name="${concert.concertName}"
+                                        th:data-genre="${concert.genre}" th:data-date="${concert.date}"
+                                        th:data-city-id="${concert.location.city.id}"
+                                        th:data-location-id="${concert.location.id}"
+                                        th:data-description="${concert.description}" th:data-price="${concert.price}">
+                                        Modifica
+                                    </a>
                                     <button class="btn btn-sm btn-outline-danger delete mt-1"
                                         style="width: 100%; height: 100%;"
                                         th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
@@ -311,10 +339,19 @@
                             <p class="card-text mb-1"><strong>Location:</strong> <span
                                     th:text="|${concert.location.city.name}, ${concert.location.name}|"></span>
                             </p>
-                            <p class="card-text mb-3"><strong>Genere:</strong> <span th:text="${concert.genre}"></span>
+                            <p class="card-text mb-1"><strong>Genere:</strong> <span th:text="${concert.genre}"></span>
                             </p>
-                            <a th:href="@{/modify/{id}(id=${concert.id})}" class="btn btn-light mb-1">Modifica</a>  
-                            <button class="btn btn-sm btn-outline-danger delete"
+                            <p class="card-text mb-3"><strong>Prezzo:</strong> <span th:text="${concert.price}"></span>
+                            </p>
+                            <a class="btn btn-light edit" th:data-id="${concert.id}"
+                                th:data-artist="${concert.artist}" th:data-concert-name="${concert.concertName}"
+                                th:data-genre="${concert.genre}" th:data-date="${concert.date}"
+                                th:data-city-id="${concert.location.city.id}"
+                                th:data-location-id="${concert.location.id}"
+                                th:data-description="${concert.description}" th:data-price="${concert.price}">
+                                Modifica
+                            </a>
+                            <button class="btn btn-outline-danger delete"
                                 th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
                                 Elimina
                             </button>
@@ -367,6 +404,19 @@
                 if (confirmDelete)
                     window.location.href = "/reserved/delete?id=" + receivedDatas[1];
             });
+        });
+
+
+        // Controllo validazione data
+        document.addEventListener("DOMContentLoaded", function () {
+            const dateInput = document.getElementById("date");
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Mesi da 0 a 11
+            const day = String(today.getDate()).padStart(2, '0');
+            const minDate = `${year}-${month}-${day}`; // Formato YYYY-MM-DD
+
+            dateInput.setAttribute("min", minDate);
         });
 
     </script>

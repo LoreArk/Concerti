@@ -137,8 +137,9 @@ concertForm.addEventListener("submit", event => {
         .then(response => {
             return response.text().then(text => {
                 console.log('Risposta server:', text);
-                if (response.status === 200 && text === "Operazione Eseguita") {
-                    window.location.href = "/reserved";
+                if (response.status === 200 || text === "Operazione Eseguita") {
+                    alert("Operazione Eseguita" + text);
+                    redirect = "/reserved";
                 } else {
                     alert("Errore durante il salvataggio: " + text);
                 }
@@ -149,4 +150,39 @@ concertForm.addEventListener("submit", event => {
             alert("Si è verificato un errore durante l'invio del form");
         });
     }
+});
+
+
+// Aggiungi un listener per i bottoni "Modifica"
+document.querySelectorAll(".edit").forEach(button => {
+    button.addEventListener("click", function () {
+        // Ottieni i dati dal bottone
+        const id = this.getAttribute("data-id");
+        const artist = this.getAttribute("data-artist");
+        const concertName = this.getAttribute("data-concert-name");
+        const genre = this.getAttribute("data-genre");
+        const date = this.getAttribute("data-date");
+        const cityId = this.getAttribute("data-city-id");
+        const locationId = this.getAttribute("data-location-id");
+        const description = this.getAttribute("data-description");
+        const price = this.getAttribute("data-price");
+
+        // Popola i campi del form
+        document.querySelector("input[name='id']").value = id;
+        document.querySelector("input[name='artist']").value = artist;
+        document.querySelector("input[name='concertName']").value = concertName;
+        document.querySelector("input[name='genre']").value = genre;
+        document.querySelector("input[name='date']").value = date.split("T")[0]; // Solo la data
+        document.querySelector("input[name='time']").value = date.split("T")[1]; // Solo l'orario
+        document.querySelector("select[name='citySelect']").value = cityId;
+        document.querySelector("select[name='locationSelect']").value = locationId;
+        document.querySelector("textarea[name='description']").value = description;
+        document.querySelector("input[name='price']").value = price;
+
+        // Abilita il campo "locationSelect" se disabilitato
+        locationSelect.disabled = false;
+
+        // Scorri fino al form
+        concertForm.scrollIntoView({ behavior: "smooth" });
+    });
 });
