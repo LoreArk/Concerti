@@ -1,14 +1,19 @@
+html {
+    overflow-x: hidden;
+}
+
 body {
     background-color: #3e0000;
     font-family: monospace;
     position: relative;
     min-height: 100%;
+    overflow-x: hidden;
 }
 
 .header {
     background-color: #ff9b9b87;
     padding: 1%;
-    width: 100vw;
+    width: 100%;
 }
 
 a {
@@ -26,9 +31,9 @@ a:visited {
 
 
 .footer {
-    background-color: #ff994554;
+    background-color: #ff9b9b87;
     padding: 1%;
-    width: 100vw;
+    width: 100%;
 }
 
 .footer a {
@@ -42,7 +47,7 @@ a:visited {
 .social-icon {
     max-width: 30px;
     height: auto;
-  }
+}
   
 .main-content {
     margin-top: 5%;
@@ -108,7 +113,7 @@ a-waves svg path {
 
 .navbar-nav .nav-link {
     color: #000;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .navbar-nav .nav-link:hover {
@@ -136,8 +141,8 @@ a-waves svg path {
 .tog1,
 .tog2,
 .tog3 {
-    width: 35px;
-    height: 5px;
+    width: 30px;
+    height: 3px;
     background-color: #333;
     margin: 6px 0;
     transition: 0.4s;

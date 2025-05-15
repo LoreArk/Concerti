@@ -47,22 +47,6 @@
     padding: 1rem;
   }
 
-  .card:nth-child(even) {
-    background-color: #fffbee;
-    box-shadow: 10px 10px;
-    animation: slidedx ease-in-out;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;
-  }
-
-  .card:nth-child(odd) {
-    background-color: #ffffff73;
-    box-shadow: 10px 10px;
-    animation: slidesx ease-in-out;
-    animation-timeline: view();
-    animation-range: entry 0 cover 40%;
-  }
-
   .card img {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -84,25 +68,6 @@
     }
   }
 
-  @keyframes slidesx {
-    from {
-      transform: translateX(-100%);
-    }
-
-    to {
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slidedx {
-    from {
-      transform: translateX(100%);
-    }
-
-    to {
-      transform: translateX(0);
-    }
-  }
 
   #box {
     background-color: #fffbeec1;
@@ -424,7 +389,7 @@
     <div class="carousel-mask"></div>
   </div>
   <!--th:each="concert : ${concerti}"-->
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" style="width: 100%;">
     <div th:each="concert : ${concerti}" class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
       <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
         <img th:src="${concert.poster}" alt="concert poster" class="card-img-top">
@@ -440,41 +405,40 @@
         </div>
       </div>
     </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
-        <div class="container-fluid">
-          <div class="row justify-content-center padding: 3%">
-            <div class="col-md-3 p-3">
-              <a class="text-dark" href="#"><img th:src="@{/2TICKET.png}" alt="Logo" style="width:120px;"></a>
-            </div>
+  </div>
+  <!-- FOOTER -->
+  <div class="footer">
+    <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
+      <div class="container-fluid">
+        <div class="row justify-content-center padding: 3%">
+          <div class="col-md-3 p-3">
+            <a class="text-dark" href="#"><img th:src="@{/2TICKET.png}" alt="Logo" style="width:120px;"></a>
           </div>
-          <div class="container text-center">
-            <div class="row mt-5">
-              <div class="col">
-                <a href="#">chi siamo</a>
-              </div>
-              <div class="col">
-                <a href="#">cosa facciamo</a>
-              </div>
-              <div class="col">
-                © 2025 Copyright:
-                <a href="#">Concerti Italia</a>
-              </div>
-            </div>
-          </div>
-          <div class="container text-center">
-            <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap my-5">
-              <a href="#"><img src="/images/tiktok.png" alt="tiktok" class="img-fluid social-icon"></a>
-              <a href="#"><img src="/images/insta.png" alt="instagram" class="img-fluid social-icon"></a>
-              <a href="#"><img src="/images/facebook.png" alt="facebook" class="img-fluid social-icon"></a>
-            </div>
-          </div>
-          
         </div>
-      </footer>
-    </div>
+        <div class="container text-center">
+          <div class="row mt-5">
+            <div class="col">
+              <a th:href="@{/chiSiamo}">chi siamo</a>
+            </div>
+            <div class="col">
+              <a href="#">cosa facciamo</a>
+            </div>
+            <div class="col">
+              © 2025 Copyright:
+              <a href="#">Concerti Italia</a>
+            </div>
+          </div>
+        </div>
+        <div class="container text-center">
+          <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap my-5">
+            <a href="#"><img src="/images/tiktok.png" alt="tiktok" class="img-fluid social-icon"></a>
+            <a href="#"><img src="/images/insta.png" alt="instagram" class="img-fluid social-icon"></a>
+            <a href="#"><img src="/images/facebook.png" alt="facebook" class="img-fluid social-icon"></a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
   </div>
   <script th:src="@{/script.js}"></script>
 </body>
