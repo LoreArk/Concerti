@@ -223,24 +223,27 @@
                             </select>
                     </div>
 
-                    <!-- Gruppo descrizione con data e orario affiancati su desktop -->
+                    <!-- DESCRIPTION -->
                     <div class="col-12 col-md-6">
                         <textarea id="description" name="description" th:value="${concertForm.description}" rows="6" class="form-control"
                             placeholder="Descrizione concerto"></textarea>
                     </div>
+                    <!--DATE-->
                     <div class="col-12 col-md-6">
                         <div class="row g-3">
                             <div class="col-6 col-md-12">
                                 <label for="date" class="form-label">Data</label>
-                                <input name="date" type="date" class="form-control" id="date" required>
+                                <input name="date" type="date" class="form-control"
+                                    th:value="${#temporals.format(concertForm.date, 'yyyy-MM-dd')}" id="date" required>
                             </div>
                             <div class="col-6 col-md-12">
                                 <label for="orario" class="form-label">Orario</label>
-                                <input name="time" type="time" class="form-control" id="orario">
+                                <input name="time" type="time" class="form-control" id="orario"
+                                    th:value="${#temporals.format(concertForm.date, 'HH:mm')}" />
                             </div>
                         </div>
                     </div>
-
+                    <!--PRICE-->
                     <div class="col-12 col-md-4 order-md-3 order-1">
                         <input type="number" id="price" name="price" th:value="${concertForm.price}" step="0.10" min="0" class="form-control"
                             placeholder="Prezzo in euro">
