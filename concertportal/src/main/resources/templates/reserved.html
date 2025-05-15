@@ -309,6 +309,7 @@
                                 <td th:text="${concert.price}" style="border-left: 1px solid #d7d7d7bd;"></td>
                                 <td  style="border-left: 1px solid #d7d7d7bd;">
                                     <a class="btn btn-light mb-1 edit" th:data-id="${concert.id}"
+                                        style="width: 100%; height: 100%;"  
                                         th:data-artist="${concert.artist}" th:data-concert-name="${concert.concertName}"
                                         th:data-genre="${concert.genre}" th:data-date="${concert.date}"
                                         th:data-city-id="${concert.location.city.id}"
@@ -316,7 +317,7 @@
                                         th:data-description="${concert.description}" th:data-price="${concert.price}">
                                         Modifica
                                     </a>
-                                    <button class="btn btn-sm btn-outline-danger delete mt-1"
+                                    <button class="btn  btn-outline-danger delete mt-1"
                                         style="width: 100%; height: 100%;"
                                         th:value="|${concert.artist} ${concert.concertName}@${concert.id}|">
                                         Elimina
