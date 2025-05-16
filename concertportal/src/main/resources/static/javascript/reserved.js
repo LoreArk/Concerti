@@ -85,7 +85,7 @@ artistImage.addEventListener("change", function() {
         const reader = new FileReader();
         reader.onload = function(e) {
             uploadedArtistImg = e.target.result;
-            this.style.border = "1px solid green"; // Feedback visivo positivo
+            this.style.border = "1px solid green"; 
         }.bind(this);
         reader.readAsDataURL(file);
         console.log("Foto artista caricata correttamente");
@@ -109,7 +109,7 @@ concertForm.addEventListener("submit", event => {
             : "Confermi l'aggiunta dell'evento?";
 
         if (!confirm(confirmMessage)) {
-            return; // L'utente ha annullato l'invio
+            return;
         }
 
           const formData = {
@@ -146,10 +146,8 @@ concertForm.addEventListener("submit", event => {
             return response.text().then(text => {
                  console.log('Response:', text);
                 if (response.status === 200 && text === "Operation completed") {
-                    // window.location.href = "/reserved";
+                    window.location.href = "/reserved";
                     console.log("reload page");
-                    window.location.reload();
-                    window.location.href = window.location.pathname;
                 }
             })
         })
@@ -157,37 +155,3 @@ concertForm.addEventListener("submit", event => {
 
     }
 });
-
-// // Aggiungi un listener per i bottoni "Modifica"
-// document.querySelectorAll(".edit").forEach(button => {
-//     button.addEventListener("click", function () {
-//         // Ottieni i dati dal bottone
-//         const id = this.getAttribute("data-id");
-//         const artist = this.getAttribute("data-artist");
-//         const concertName = this.getAttribute("data-concert-name");
-//         const genre = this.getAttribute("data-genre");
-//         const date = this.getAttribute("data-date");
-//         const cityId = this.getAttribute("data-city-id");
-//         const locationId = this.getAttribute("data-location-id");
-//         const description = this.getAttribute("data-description");
-//         const price = this.getAttribute("data-price");
-
-//         // Popola i campi del form
-//         document.querySelector("input[name='id']").value = id;
-//         document.querySelector("input[name='artist']").value = artist;
-//         document.querySelector("input[name='concertName']").value = concertName;
-//         document.querySelector("input[name='genre']").value = genre;
-//         document.querySelector("input[name='date']").value = date.split("T")[0]; // Solo la data
-//         document.querySelector("input[name='time']").value = date.split("T")[1]; // Solo l'orario
-//         document.querySelector("select[name='citySelect']").value = cityId;
-//         document.querySelector("select[name='locationSelect']").value = locationId;
-//         document.querySelector("textarea[name='description']").value = description;
-//         document.querySelector("input[name='price']").value = price;
-
-//         // Abilita il campo "locationSelect" se disabilitato
-//         locationSelect.disabled = false;
-
-//         // Scorri fino al form
-//         concertForm.scrollIntoView({ behavior: "smooth" });
-//     });
-// });
