@@ -14,6 +14,41 @@
 <link rel="script" th:src="@{/script.js}">
 </link>
 </link>
+<style>
+    .main-content {
+        background: #ffffff;
+        padding: 40px;
+        margin: 60px auto;
+        max-width: 900px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+    }
+
+    .main-content h3 {
+        margin-top: 30px;
+        color: #a50000;
+        font-weight: bold;
+    }
+
+    .main-content ul {
+        padding-left: 0;
+        list-style: none;
+        font-size: 18px;
+    }
+
+    .main-content li {
+        margin: 10px 0;
+    }
+
+    .main-content img {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 0 5px rgba(65, 65, 65, 0.455);
+    }
+</style>
 </head>
 
 <body>
@@ -51,37 +86,33 @@
         </nav>
     </div>
     <!-- HEADER -->
-    <div class="container">
-
-        <p class="text-center">
+    <div class="main-content">
+        <img th:src="@{/images/cosaFacciamo.jpg}" alt="Organizzazione Eventi">
+        <p>
             Il nostro team lavora ogni giorno per rendere l’esperienza musicale più accessibile e piacevole per tutti.
             Attraverso una piattaforma moderna e intuitiva, offriamo agli utenti la possibilità di:
         </p>
-        <br>
-        <br>
-        <ul class="text-center list-unstyled">
+
+        <ul>
             <li>🎤 Scoprire concerti in base ai propri gusti musicali e alla posizione geografica</li>
             <li>📅 Consultare calendari aggiornati con eventi locali e nazionali</li>
             <li>🎟️ Acquistare i biglietti direttamente dai nostri partner in modo sicuro e veloce</li>
             <li>📲 Ricevere notifiche personalizzate su artisti, tour e nuove date</li>
             <li>🏟️ Visualizzare informazioni dettagliate su location, accessibilità e servizi</li>
         </ul>
-        <br>
-        <br>
-        <p class="text-center">
+
+        <p>
             Non ci limitiamo a segnalare eventi: vogliamo creare un punto d’incontro per fan, artisti e organizzatori.
             Il nostro obiettivo è offrire un’esperienza completa prima, durante e dopo ogni concerto.
         </p>
-        <br>
-        <br>
-        <p class="testo">
+
+        <p>
             Ogni giorno raccogliamo, organizziamo e pubblichiamo centinaia di eventi musicali in tutta Italia.
             Collaboriamo con locali, organizzatori e artisti per offrire un'esperienza sempre aggiornata
             e accessibile a tutti gli appassionati.
         </p>
-        <br>
-        <br>
-        <p class="testo">
+
+        <p>
             Vogliamo rendere la musica dal vivo più accessibile, connettendo artisti e pubblico
             attraverso un’unica piattaforma semplice da usare. Crediamo che ogni concerto sia
             un’occasione unica per creare ricordi, condividere emozioni e vivere la cultura musicale italiana.
