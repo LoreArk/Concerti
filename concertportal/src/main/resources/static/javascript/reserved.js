@@ -121,6 +121,7 @@ concertForm.addEventListener("submit", event => {
             description: document.querySelector("textarea[name='description']").value,
             price: document.querySelector("input[name='price']").value,
             foto: uploadedArtistImg,
+            poster: uploadedPosterImg,
             location: {
                 id: document.querySelector("select[name='locationSelect']").value, 
                 name: document.querySelector("select[name='locationSelect'] option:checked").textContent,
@@ -144,8 +145,11 @@ concertForm.addEventListener("submit", event => {
         .then(response => {
             return response.text().then(text => {
                  console.log('Response:', text);
-                if (response.status === 200 && text === "Operazione Eseguita") {
-                    window.location.href = "/reserved";
+                if (response.status === 200 && text === "Operation completed") {
+                    // window.location.href = "/reserved";
+                    console.log("reload page");
+                    window.location.reload();
+                    window.location.href = window.location.pathname;
                 }
             })
         })
