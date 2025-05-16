@@ -63,6 +63,22 @@
             margin: 0 0 5px;
         }
 
+        .container, .row {
+            animation: appear 0.5s ease forwards;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                scale: 0.5;
+            }
+
+            to {
+                opacity: 1;
+                scale: 1;
+            }
+        }
+
         .remove-btn {
             position: absolute;
             top: 10px;
@@ -146,7 +162,7 @@
         <svg class="js-svg"></svg>
     </a-waves>
     <div class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd; padding: 3%;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
                 <div class="row"><a class="navbar-brand col-md-12" th:href="@{/}"><img th:src="@{/2TICKET.png}"
                             alt="Logo" width="160"> </a></div>
@@ -396,41 +412,41 @@
             </div>
         </footer>
     </div>
-<!-- Caricamento di script esterni -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-    crossorigin="anonymous"></script>
-<script th:src="@{/script.js}"></script>
+    <!-- Caricamento di script esterni -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <script th:src="@{/script.js}"></script>
 
-<!-- Script per l'eliminazione dei concerti -->
-<script>
-    document.querySelectorAll(".delete").forEach(function (button) {
-        button.addEventListener("click", function () {
-            const receivedValues = this.getAttribute("value");
-            const receivedDatas = receivedValues.split("@");
-            const confirmDelete = confirm("Sei sicuro di voler cancellare " + receivedDatas[0]);
-            if (confirmDelete)
-                window.location.href = "/reserved/delete?id=" + receivedDatas[1];
+    <!-- Script per l'eliminazione dei concerti -->
+    <script>
+        document.querySelectorAll(".delete").forEach(function (button) {
+            button.addEventListener("click", function () {
+                const receivedValues = this.getAttribute("value");
+                const receivedDatas = receivedValues.split("@");
+                const confirmDelete = confirm("Sei sicuro di voler cancellare " + receivedDatas[0]);
+                if (confirmDelete)
+                    window.location.href = "/reserved/delete?id=" + receivedDatas[1];
+            });
         });
-    });
 
 
-    // Controllo validazione data
-    document.addEventListener("DOMContentLoaded", function () {
-        const dateInput = document.getElementById("date");
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // Mesi da 0 a 11
-        const day = String(today.getDate()).padStart(2, '0');
-        const minDate = `${year}-${month}-${day}`; // Formato YYYY-MM-DD
+        // Controllo validazione data
+        document.addEventListener("DOMContentLoaded", function () {
+            const dateInput = document.getElementById("date");
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Mesi da 0 a 11
+            const day = String(today.getDate()).padStart(2, '0');
+            const minDate = `${year}-${month}-${day}`; // Formato YYYY-MM-DD
 
-        dateInput.setAttribute("min", minDate);
-    });
+            dateInput.setAttribute("min", minDate);
+        });
 
-</script>
+    </script>
 
-<!-- Caricamento dello script principale per la gestione del form -->
-<script th:src="@{/javascript/reserved.js}"></script>
+    <!-- Caricamento dello script principale per la gestione del form -->
+    <script th:src="@{/javascript/reserved.js}"></script>
 </body>
 
 </html>
