@@ -44,9 +44,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/error}">Pricing</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/reserved/logout}"></a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -87,7 +84,7 @@
 
 
 
-    <!--Footer-->
+    <!-- FOOTER -->
     <div class="footer">
         <footer class="bg-light text-lg-start" style="background-color: #e3f2fd; padding: 3%;">
             <div class="container-fluid">
@@ -99,7 +96,7 @@
                 <div class="container text-center">
                     <div class="row mt-5">
                         <div class="col">
-                            <a href="#">chi siamo</a>
+                            <a th:href="@{/chiSiamo}">chi siamo</a>
                         </div>
                         <div class="col">
                             <a href="#">cosa facciamo</a>
