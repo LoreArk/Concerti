@@ -234,7 +234,7 @@
                         <select name="locationSelect" id="locationSelect" class="form-select"
                             th:disabled="${concertForm.id == null}" required>
                             <option value="" hidden>Seleziona una venue</option>
-                            <!--Da qui o da JS, vanno mostrate solo le location della city selezionata-->
+                            
                             <option th:each="location : ${locations}" th:text="${location.name}"
                                 th:value="${location.id}"
                                 th:selected="${location.id == concertForm.location.id ? true : false}">
@@ -268,15 +268,15 @@
                         <input type="number" id="price" name="price" th:value="${concertForm.price}" step="0.01" min="0"
                             class="form-control" placeholder="Prezzo in euro" required>
                     </div>
-
+                    <!--POSTER IMAGE-->
                     <div class="col-12 col-md-6 order-md-2 order-2">
-                        <label class="form-label" for="poster">Locandina</label>
+                        <label class="form-label" for="poster" th:text="${concertForm.id == null} ? 'Locandina' : 'Locandina (lascia vuoto per non modificare)'">Locandina</label>
                         <input name="poster" type="file" class="form-control" id="poster" accept="image/*"
                             th:attr="required=${concertForm.id == null}">
                     </div>
-
+                    <!--ARTIST PHOTO-->
                     <div class="col-12 col-md-6 order-md-4 order-3">
-                        <label class="form-label" for="artistPhoto">Foto Artista</label>
+                        <label class="form-label" for="artistPhoto" th:text="${concertForm.id == null} ? 'Foto Artista' : 'Foto Artista (lascia vuoto per non modificare)'">Foto Artista</label>
                         <input name="artistPhoto" type="file" class="form-control" id="artistPhoto" accept="image/*"
                             th:attr="required=${concertForm.id == null}">
                     </div>
