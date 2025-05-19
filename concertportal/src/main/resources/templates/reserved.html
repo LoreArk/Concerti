@@ -166,8 +166,15 @@
     <div class="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
-                <div class="row"><a class="navbar-brand col-md-12" th:href="@{/}"><img th:src="@{/2TICKET.png}"
-                            alt="Logo" width="160"> </a></div>
+                <div class="d-flex">
+                    <a class="navbar-brand me-3 d-flex align-items-end" th:href="@{/}">
+                        <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+                    </a>
+                    <div class="d-none d-md-flex align-items-end">
+                        <p class="slogan-text">Concerti in Italia, da cima a fondo.</p>
+                    </div>
+                </div>
+
                 <div class="row" style="width: 45vw;">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
@@ -188,13 +195,14 @@
                                 <a class="nav-link" th:href="@{/error}">Pricing</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{/reserved/logout}">Logout</a>
+                                <a class="nav-link" th:href="@{/reserved/logout}"></a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
+        <div class="header-mask"></div>
     </div>
     <!-- HEADER -->
     <div class="container py-5">
@@ -235,7 +243,7 @@
                         <select name="locationSelect" id="locationSelect" class="form-select"
                             th:disabled="${concertForm.id == null}" required>
                             <option value="" hidden>Seleziona una venue</option>
-                            
+
                             <option th:each="location : ${locations}" th:text="${location.name}"
                                 th:value="${location.id}"
                                 th:selected="${location.id == concertForm.location.id ? true : false}">
@@ -271,13 +279,16 @@
                     </div>
                     <!--POSTER IMAGE-->
                     <div class="col-12 col-md-6 order-md-2 order-2">
-                        <label class="form-label" for="poster" th:text="${concertForm.id == null} ? 'Locandina' : 'Locandina (lascia vuoto per non modificare)'">Locandina</label>
+                        <label class="form-label" for="poster"
+                            th:text="${concertForm.id == null} ? 'Locandina' : 'Locandina (lascia vuoto per non modificare)'">Locandina</label>
                         <input name="poster" type="file" class="form-control" id="poster" accept="image/*"
                             th:attr="required=${concertForm.id == null}">
                     </div>
                     <!--ARTIST PHOTO-->
                     <div class="col-12 col-md-6 order-md-4 order-3">
-                        <label class="form-label" for="artistPhoto" th:text="${concertForm.id == null} ? 'Foto Artista' : 'Foto Artista (lascia vuoto per non modificare)'">Foto Artista</label>
+                        <label class="form-label" for="artistPhoto"
+                            th:text="${concertForm.id == null} ? 'Foto Artista' : 'Foto Artista (lascia vuoto per non modificare)'">Foto
+                            Artista</label>
                         <input name="artistPhoto" type="file" class="form-control" id="artistPhoto" accept="image/*"
                             th:attr="required=${concertForm.id == null}">
                     </div>

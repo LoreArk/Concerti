@@ -149,7 +149,7 @@
     }
 
     100% {
-      transform: translateX(-378%);
+      transform: translateX(-375%);
     }
   }
 
@@ -279,8 +279,15 @@
   <div class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
       <div class="container-fluid">
-        <div class="row"><a class="navbar-brand col-md-12" th:href="@{/}"><img th:src="@{/2TICKET.png}" alt="Logo"
-              width="160"> </a></div>
+        <div class="d-flex">
+          <a class="navbar-brand me-3 d-flex align-items-end" th:href="@{/}">
+            <img th:src="@{/2TICKET.png}" alt="Logo" width="160">
+          </a>
+          <div class="d-none d-md-flex align-items-end">
+            <p class="slogan-text">Concerti in Italia, da cima a fondo.</p>
+          </div>
+        </div>
+
         <div class="row" style="width: 45vw;">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="myFunction(this)">
@@ -393,9 +400,9 @@
   </div>
   <!--th:each="concert : ${concerti}"-->
   <div class="row justify-content-center" style="width: 100%;">
-    <div th:each="concert : ${concerti}" 
-        th:if="${concert.date.isAfter(T(java.time.LocalDateTime).now()) or concert.date.isEqual(T(java.time.LocalDateTime).now())}"
-          class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
+    <div th:each="concert : ${concerti}"
+      th:if="${concert.date.isAfter(T(java.time.LocalDateTime).now()) or concert.date.isEqual(T(java.time.LocalDateTime).now())}"
+      class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
       <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
         <img th:src="${concert.poster}" alt="concert poster" class="card-img-top">
       </div>

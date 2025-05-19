@@ -13,8 +13,8 @@ body {
     width: 100%;
     animation: slideDown 0.4s ease forwards;
     mask-image: linear-gradient(to top,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 1) 10%);
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) 10%);
 }
 
 .header-mask {
@@ -55,8 +55,8 @@ a:visited {
 .footer {
     width: 100%;
     mask-image: linear-gradient(to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 1) 5%);
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) 5%);
     animation: appear 0.4s ease forwards;
     animation-timeline: view();
     animation-range: 0% 20%;
@@ -70,9 +70,9 @@ a:visited {
 }
 
 .foot {
-    padding-top: 3%; 
-    padding-bottom: 2%; 
-    padding-left: 2%; 
+    padding-top: 3%;
+    padding-bottom: 2%;
+    padding-left: 2%;
     padding-right: 2%;
     height: 200px;
 }
@@ -87,7 +87,7 @@ a:visited {
     transform: scale(1.4);
     transition: transform 0.3s ease;
 }
-  
+
 .main-content {
     margin-top: 5%;
     margin-bottom: 5%;
@@ -207,8 +207,34 @@ a-waves svg path {
 }
 
 .navbar {
-    padding-top: 2%; 
-    padding-bottom: 3%; 
-    padding-left: 2%; 
+    padding-top: 2%;
+    padding-bottom: 3%;
+    padding-left: 2%;
     padding-right: 2%;
 }
+
+.navbar-text {
+    justify-content: end;
+    align-items: end;
+
+}
+
+.slogan-text {
+    font-size: 12px;
+    opacity: 0.7;
+    white-space: nowrap;
+    line-height: 1; /* Assicura che la linea di testo stia compatta */
+    margin-bottom: 3px;
+  }
+
+@media (max-width: 767.98px) {
+    .slogan-text {
+        display: none !important;
+    }
+
+    .navbar-brand img {
+        width: 120px;
+    }
+}
+
+
