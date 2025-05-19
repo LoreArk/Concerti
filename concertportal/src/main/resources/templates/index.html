@@ -393,7 +393,9 @@
   </div>
   <!--th:each="concert : ${concerti}"-->
   <div class="row justify-content-center" style="width: 100%;">
-    <div th:each="concert : ${concerti}" class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
+    <div th:each="concert : ${concerti}" 
+        th:if="${concert.date.isAfter(T(java.time.LocalDateTime).now()) or concert.date.isEqual(T(java.time.LocalDateTime).now())}"
+          class="col-md-4 card m-5 p-0" style="max-height: 550px;" id="box">
       <div class="img-container d-flex justify-content-center mt-3" style="height: 40%; overflow: hidden;">
         <img th:src="${concert.poster}" alt="concert poster" class="card-img-top">
       </div>
