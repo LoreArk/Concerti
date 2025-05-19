@@ -37,7 +37,7 @@
         position: relative;
         z-index: 1;
         padding: 20px;
-        margin: 30vh auto 30vh auto;
+        margin: 10vh auto 30vh auto;
         text-align: center;
         font-size: 20px;
         background-color: #300000c6;
@@ -57,6 +57,37 @@
             opacity: 1;
             scale: 1;
         }
+    }
+
+    @keyframes jump {
+        0% {
+            bottom: 0;
+        }
+
+        30% {
+            bottom: 100px;
+        }
+
+        60% {
+            bottom: 100px;
+        }
+
+        100% {
+            bottom: 0;
+        }
+    }
+
+    .jump {
+        animation: jump 0.5s ease;
+    }
+
+    .game-container {
+        background-color: #f8f9fa;
+    }
+
+    #obstacle {
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
     }
 </style>
 </head>
@@ -108,11 +139,24 @@
     </div>
     <!-- HEADER -->
     <div class="content w-100 row justify-content-center">
+        <div class="game-container position-relative overflow-hidden border rounded"
+            style="height: 200px; width: 100%; max-width: 600px; margin: 50px auto;">
+            <img id="dino" th:src="@{/images/ghost.png}"
+                style="position: absolute; bottom: 0; left: 50px; width: 60px; height: 70px; width: auto;" />
+            <div id="obstacle" class="bg-dark position-absolute"
+                style="bottom: 0; right: -60px; width: 30px; height: 50px;"></div>
+            <div class="text-center mt-3">
+                <h4 id="score">Score: 0</h4>
+                <p>Premi <kbd>TAB</kbd> per saltare</p>
+            </div>
+        </div>
+
         <div class="quadro" style="width: 80%;">
             <h1>Error 404</h1>
             <h3>Or something like that</h3>
         </div>
     </div>
+
     <!-- FOOTER -->
     <div class="footer" style="width: 100%;">
         <footer class="bg-light text-lg-start foot" style="background-color: #e3f2fd;">
@@ -149,5 +193,57 @@
     </div>
     <script th:src="@{/script.js}"></script>
 </body>
+<!--Script gioco-->
+<script>
+    const dino = document.getElementById('dino');
+    const obstacle = document.getElementById('obstacle');
+    const scoreDisplay = document.getElementById('score');
+
+    let score = 0;
+    let isJumping = false;
+    let obstacleLeft = 600;
+    let gameInterval;
+
+    function jump() {
+        if (!isJumping) {
+            isJumping = true;
+            dino.classList.add('jump');
+            setTimeout(() => {
+                dino.classList.remove('jump');
+                isJumping = false;
+            }, 500);
+        }
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Space' || e.key === 'Tab' || e.keyCode === 32) {
+            e.preventDefault();
+            jump();
+        }
+    });
+
+    function startGame() {
+        gameInterval = setInterval(() => {
+            obstacleLeft -= 5;
+            if (obstacleLeft < -40) {
+                obstacleLeft = 600;
+                score++;
+                scoreDisplay.textContent = 'Score: ' + score;
+            }
+
+            obstacle.style.right = (600 - obstacleLeft) + 'px';
+
+            // Collision detection
+            const dinoBottom = parseInt(window.getComputedStyle(dino).getPropertyValue("bottom"));
+            if (obstacleLeft < 110 && obstacleLeft > 50 && dinoBottom < 50) {
+                clearInterval(gameInterval);
+                alert("💀 Game Over! Hai totalizzato: " + score + " punti");
+                location.reload();
+            }
+        }, 20);
+    }
+
+    startGame();
+</script>
 
 </html>
