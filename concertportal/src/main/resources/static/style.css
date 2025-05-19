@@ -59,7 +59,7 @@ a:visited {
         rgba(0, 0, 0, 1) 5%);
     animation: appear 0.4s ease forwards;
     animation-timeline: view();
-    animation-range: 0% 25%;
+    animation-range: 0% 23%;
 }
 
 .footer a {
