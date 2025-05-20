@@ -198,7 +198,7 @@
         <div class="row">
             <div class="col-lg-6"><img th:src="${concert.foto}" alt="concerto"></div>
             <div class="col-lg-6">
-                <ul class="list-group">
+                <ul class="list-group" >
                     <li class="list-group-item" th:text="|${concert.description}|"></li>
                     <li class="list-group-item" th:text="|${concert.artist}|"></li>
                     <li class="list-group-item" th:text="|${concert.genre}|"></li>
@@ -208,10 +208,10 @@
                     <li class="list-group-item" th:text="|${concert.location.address}|"></li>
 
                     <li class="list-group-item" th:text="|A partire da: ${concert.price} euro |"></li>
-                    <li class="nav-item">
+                   <!-- <li class="nav-item">-->
                         <a th:href="@{/error}"><button type="submit" class="btn btn-ripple btn-primary"
                                 value="acquista">Acquista</button></a>
-                    </li>
+                    <!--</li>-->
                 </ul>
             </div>
         </div>
