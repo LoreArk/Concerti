@@ -21,14 +21,13 @@
 
 2.
  Run the project via code editor
+
 3.
  Access the website from your browser typing localhost8080/
   
     Credentials:
 	admin1@gmail.com
 	access!1
-
-
 
 <h2>Languages</h2>
  -Java<br>
